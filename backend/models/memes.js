@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require("./users.js");
 
 const memeSchema = new Schema({
   title: {
