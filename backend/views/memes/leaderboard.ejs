@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard - ZooFi</title>
+  </head>
+  <body>
+    <h1>🏆 Meme Leaderboard</h1>
+
+    <h2>🔥 Top Memes</h2>
+    <ul>
+      <% topMemes.forEach((meme, index) => { %>
+      <li>
+        <strong><%= index + 1 %>. <%= meme.title %></strong> - Score: <%=
+        meme.popularityScore %>
+      </li>
+      <% }) %>
+    </ul>
+
+    <h2>👑 Top Users</h2>
+    <ul>
+      <% topUsers.forEach((entry, index) => { %>
+      <li>
+        <strong><%= index + 1 %>. <%= entry.userId.username %></strong> - Score:
+        <%= entry.score %>, Total Mints: <%= entry.totalMints %>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

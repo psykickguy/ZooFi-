@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallet Connect</title>
+  </head>
+  <body>
+    <h1>Connect Your Wallet</h1>
+
+    <% if (walletAddress) { %>
+    <p><strong>Wallet Address:</strong> <%= walletAddress %></p>
+    <p><strong>Network:</strong> <%= network %></p>
+    <p><strong>Balance:</strong> <%= balance %> ETH</p>
+    <form method="POST" action="/wallet-disconnect">
+      <button type="submit">Disconnect Wallet</button>
+    </form>
+    <% } else { %>
+    <form method="POST" action="/wallet-connect">
+      <input
+        type="text"
+        name="walletAddress"
+        placeholder="Wallet Address"
+        required
+      />
+      <input
+        type="text"
+        name="network"
+        placeholder="Network (e.g., Sui, Ethereum)"
+        required
+      />
+      <input
+        type="text"
+        name="balance"
+        placeholder="Balance (e.g., 1.23)"
+        required
+      />
+      <button type="submit">Connect Wallet</button>
+    </form>
+    <% } %>
+
+    <br /><a href="/memes">Back to Home</a>
+  </body>
+</html>

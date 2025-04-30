@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= user.username %>'s Profile</title>
+  </head>
+  <body>
+    <h1>Welcome, <%= user.username %></h1>
+    <p>Wallet Address: <%= user.walletAddress || "Not Connected" %></p>
+
+    <% if (user.profilePicture) { %>
+    <img src="<%= user.profilePicture %>" alt="Profile Picture" width="150" />
+    <% } else { %>
+    <p>No profile picture set.</p>
+    <% } %>
+
+    <h2>Your Minted Memes:</h2>
+    <ul>
+      <% memes.forEach(meme => { %>
+      <li>
+        <img src="<%= meme.imageUrl %>" alt="<%= meme.title %>" width="100" />
+        <p><strong><%= meme.title %></strong> - <%= meme.memeLevel %></p>
+        <p><%= meme.description %></p>
+      </li>
+      <% }) %>
+    </ul>
+
+    <br />
+    <a href="/edit-profile">Edit Profile</a> |
+    <a href="/disconnect-wallet">Disconnect Wallet</a>
+  </body>
+</html>

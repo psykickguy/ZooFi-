@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ & Help - Zoofi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      h2 {
+        color: #444;
+      }
+      .faq {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+      }
+      button {
+        margin-top: 10px;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FAQ & Help</h1>
+
+    <div class="faq">
+      <h2>What is Zoofi?</h2>
+      <p>
+        Zoofi is a meme NFT platform where users can mint, explore, and trade
+        viral memes as NFTs.
+      </p>
+    </div>
+
+    <div class="faq">
+      <h2>How do I mint a meme?</h2>
+      <p>
+        Go to the <a href="/mint">/mint</a> page, fill in the meme details, and
+        hit Mint. Make sure your wallet is connected.
+      </p>
+    </div>
+
+    <div class="faq">
+      <h2>Do I need crypto to mint?</h2>
+      <p>
+        Yes, minting requires a small fee in crypto depending on the network
+        you’re using (e.g., Sui, Ethereum).
+      </p>
+    </div>
+
+    <div class="faq">
+      <h2>Can I sell my meme?</h2>
+      <p>
+        Yes! Once minted, you can list your meme for sale and others can buy it
+        from the explore page.
+      </p>
+    </div>
+
+    <h2>Need more help? Contact us:</h2>
+    <form method="POST" action="/contact">
+      <label for="email">Your Email</label>
+      <input type="email" name="email" id="email" required />
+
+      <label for="message">Your Question / Issue</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

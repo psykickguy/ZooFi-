@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Zoofi</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        required
+      /><br />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+      /><br />
+      <button type="submit">Log In</button>
+    </form>
+
+    <p>Don’t have an account? <a href="/signup">Sign up</a></p>
+    <p>Forgot password? <a href="#">Reset here</a> (coming soon)</p>
+
+    <!-- Optional Wallet Login (Frontend placeholder) -->
+    <button onclick="connectWallet()">Connect Wallet</button>
+
+    <script>
+      async function connectWallet() {
+        if (window.ethereum) {
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          alert("Connected: " + accounts[0]);
+          // You could POST this to backend for wallet-based login later
+        } else {
+          alert("Please install MetaMask.");
+        }
+      }
+    </script>
+  </body>
+</html>
