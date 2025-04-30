@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ZooFi | Home</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .meme-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      .meme-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .meme-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to ZooFi 🦍</h1>
+    <p>
+      Discover, mint, and collect the internet’s best viral memes as NFTs on the
+      blockchain!
+    </p>
+    <p>
+      <a href="/connect-wallet">Connect your Wallet</a> or
+      <a href="/signup">Sign Up</a> to get started.
+    </p>
+
+    <h2>🔥 Trending Memes</h2>
+    <% if (trendingMemes.length > 0) { %>
+    <div class="meme-grid">
+      <% trendingMemes.forEach(meme => { %>
+      <div class="meme-card">
+        <a href="/memes/<%= meme._id %>">
+          <img src="<%= meme.imageUrl %>" alt="<%= meme.title %>" />
+          <h3><%= meme.title %></h3>
+        </a>
+        <p><%= meme.category %> | <%= meme.memeLevel %></p>
+      </div>
+      <% }) %>
+    </div>
+    <% } else { %>
+    <p>No memes yet. Be the first to mint!</p>
+    <% } %>
+  </body>
+</html>

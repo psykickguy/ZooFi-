@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= meme.title %> | Zoofi</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+        background: #f9f9f9;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      img {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      .tags span {
+        background: #eee;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1><%= meme.title %></h1>
+      <img src="<%= meme.imageUrl %>" alt="Meme Image" />
+      <p><strong>Description:</strong> <%= meme.description %></p>
+      <p><strong>Category:</strong> <%= meme.category %></p>
+      <p><strong>Rarity:</strong> <%= meme.memeLevel %></p>
+      <p><strong>Popularity Score:</strong> <%= meme.popularityScore %></p>
+      <p>
+        <strong>Creator:</strong> <%= creator?.username || meme.creatorId %>
+      </p>
+
+      <div class="tags">
+        <strong>Tags:</strong>
+        <% meme.tags.forEach(tag => { %>
+        <span><%= tag %></span>
+        <% }); %>
+      </div>
+
+      <p><strong>Minted At:</strong> <%= meme.mintedAt.toDateString() %></p>
+
+      <% if (mintHistory && mintHistory.length > 0) { %>
+      <h3>Minting History:</h3>
+      <ul>
+        <% mintHistory.forEach(tx => { %>
+        <li>
+          Minted by User ID: <%= tx.userId %>, on <%= tx.mintedAt.toDateString()
+          %>, via <%= tx.network %>
+        </li>
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <p>No minting history available.</p>
+      <% } %> <% if (listing) { %>
+      <h3>For Sale:</h3>
+      <p>Price: <%= listing.price %> SUI</p>
+      <button>Buy Now</button>
+      <% } else { %>
+      <p><em>This meme is not currently for sale.</em></p>
+      <% } %>
+
+      <hr />
+      <!-- Future Features -->
+      <p>
+        <a href="#">❤️ Like</a> | <a href="#">💬 Comment</a> |
+        <a href="#">🔗 Share</a>
+      </p>
+    </div>
+  </body>
+</html>

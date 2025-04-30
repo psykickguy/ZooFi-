@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Memes - Zoofi</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .filters,
+      .search-bar {
+        margin-bottom: 20px;
+      }
+      .meme-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .meme-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+      }
+      .meme-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+      .meme-info {
+        margin-top: 10px;
+      }
+      select,
+      input[type="text"] {
+        padding: 5px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Explore Memes</h1>
+
+    <form method="GET" class="filters">
+      <select name="category">
+        <option value="">All Categories</option>
+        <option value="Animal">Animal</option>
+        <option value="Anime">Anime</option>
+        <option value="Dank">Dank</option>
+      </select>
+
+      <select name="memeLevel">
+        <option value="">All Levels</option>
+        <option value="Common">Common</option>
+        <option value="Rare">Rare</option>
+        <option value="Epic">Epic</option>
+        <option value="Legendary">Legendary</option>
+      </select>
+
+      <input type="text" name="tags" placeholder="Tags (comma-separated)" />
+      <select name="sortBy">
+        <option value="">Sort By</option>
+        <option value="popularity">Most Popular</option>
+        <option value="recent">Most Recent</option>
+      </select>
+
+      <button type="submit">Apply Filters</button>
+    </form>
+
+    <div class="meme-grid">
+      <% memes.forEach(meme => { %>
+      <div class="meme-card">
+        <img src="<%= meme.imageUrl %>" alt="<%= meme.title %>" />
+        <div class="meme-info">
+          <h3><%= meme.title %></h3>
+          <p><%= meme.description %></p>
+          <p><strong>Level:</strong> <%= meme.memeLevel %></p>
+          <p><strong>Category:</strong> <%= meme.category %></p>
+          <p><strong>Score:</strong> <%= meme.popularityScore %></p>
+          <p><strong>Minted:</strong> <%= meme.mintedAt.toDateString() %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>

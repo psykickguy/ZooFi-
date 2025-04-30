@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mint a Meme | Zoofi</title>
+  </head>
+  <body>
+    <h1>Mint a New Meme NFT</h1>
+    <form method="POST" action="/mint">
+      <input type="text" name="title" placeholder="Meme Title" required /><br />
+      <textarea name="description" placeholder="Description" required></textarea
+      ><br />
+      <input
+        type="text"
+        name="imageUrl"
+        placeholder="Image URL (IPFS or CDN)"
+        required
+      /><br />
+      <input
+        type="text"
+        name="category"
+        placeholder="Category (e.g. Animal, Humor)"
+        required
+      /><br />
+      <input
+        type="text"
+        name="tags"
+        placeholder="Tags (comma separated)"
+      /><br />
+
+      <!-- Placeholder for wallet connect -->
+      <p><strong>Connect Wallet:</strong> (Wallet connect integration here)</p>
+
+      <button type="submit">Mint Meme</button>
+    </form>
+  </body>
+</html>
