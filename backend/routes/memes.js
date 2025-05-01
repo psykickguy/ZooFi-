@@ -9,8 +9,9 @@ const Leaderboard = require("../models/LeaderboardEntry.js");
 //Home Route
 router.get("/", async (req, res) => {
   try {
-    const trendingMemes = await Meme.find({}).sort({ popularityScore: -1 });
-    //   .limit(10);
+    const trendingMemes = await Meme.find({})
+      .sort({ popularityScore: -1 })
+      .limit(10);
     res.render("./memes/home.ejs", { trendingMemes });
   } catch (err) {
     console.error(err);
