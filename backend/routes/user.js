@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/users.js");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../middleware.js");
 
 // GET: Signup form
 router.get("/signup", (req, res) => {
@@ -16,7 +17,7 @@ router.post("/signup", async (req, res) => {
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {
       if (err) return next(err);
-      res.redirect("/memes");
+      res.redirect("/profile/" + registeredUser._id);
     });
   } catch (err) {
     console.error(err);
@@ -32,12 +33,14 @@ router.get("/login", (req, res) => {
 // POST: Login logic
 router.post(
   "/login",
+  saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureMessage: true,
   }),
   (req, res) => {
-    res.redirect("/explore");
+    let redirectUrl = res.locals.redirectUrl || "/memes";
+    res.redirect(redirectUrl);
   }
 );
 

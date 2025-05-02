@@ -4,9 +4,9 @@ const User = require("../models/users.js");
 const Meme = require("../models/memes.js");
 
 // GET Edit Profile Form
-router.get("/profile/edit", async (req, res) => {
+router.get("/:userId/edit", async (req, res) => {
   try {
-    const userId = req.session.userId || "yourUserIdHere"; // Replace with real logic
+    const userId = req.params.userId; // Replace with real logic
     const user = await User.findById(userId);
     res.render("profile/edit-profile.ejs", { user });
   } catch (err) {
@@ -15,9 +15,9 @@ router.get("/profile/edit", async (req, res) => {
 });
 
 // POST Update Profile
-router.post("/profile/edit", async (req, res) => {
+router.post("/:userId/edit", async (req, res) => {
   try {
-    const userId = req.session.userId || "yourUserIdHere"; // Replace with real logic
+    const userId = req.params.userId; // Replace with real logic
     const { username, profilePicture } = req.body;
     await User.findByIdAndUpdate(userId, {
       username,
@@ -29,7 +29,7 @@ router.post("/profile/edit", async (req, res) => {
   }
 });
 
-router.get("/profile/:userId", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const user = await User.findById(userId);

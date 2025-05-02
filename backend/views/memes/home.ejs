@@ -35,8 +35,12 @@
       blockchain!
     </p>
     <p>
-      <a href="/connect-wallet">Connect your Wallet</a> or
-      <a href="/signup">Sign Up</a> to get started.
+      <a href="/connect-wallet">Connect your Wallet</a> or <% if(!currUser) { %>
+      <a href="/signup">Sign up</a>
+      <a href="/login">Log in</a>
+      <% } %> <% if(currUser) { %>
+      <a href="/logout">Log out</a>
+      <% } %>
     </p>
 
     <h2>🔥 Trending Memes</h2>

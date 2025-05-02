@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Meme = require("../models/memes.js");
 const MintHistory = require("../models/mintHistory.js");
-const { isLoggedIn } = require("../middleware.js");
+// const { isLoggedIn } = require("../middleware.js");
 const Leaderboard = require("../models/LeaderboardEntry.js");
 
 //Home Route
@@ -17,11 +17,6 @@ router.get("/", async (req, res) => {
     console.error(err);
     res.status(500).send("Server Error");
   }
-});
-
-//Mint Route
-router.get("/mint", (req, res) => {
-  res.render("memes/mint.ejs");
 });
 
 //Explore Route
@@ -45,22 +40,6 @@ router.get("/explore", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading memes.");
-  }
-});
-
-//My Memes Route
-router.get("/my-memes", isLoggedIn, async (req, res) => {
-  try {
-    const userId = req.user._id;
-
-    const memes = await Meme.find({
-      $or: [{ creatorId: userId }, { mintedBy: userId }],
-    });
-
-    res.render("memes/my-memes.ejs", { memes });
-  } catch (err) {
-    console.error("Error fetching memes:", err);
-    res.status(500).send("Server Error");
   }
 });
 
@@ -125,32 +104,6 @@ router.get("/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading meme details.");
-  }
-});
-
-//Create Route
-router.post("/", async (req, res) => {
-  try {
-    const { title, description, imageUrl, category, tags } = req.body;
-
-    const newMeme = new Meme({
-      title,
-      description,
-      imageUrl,
-      category,
-      tags: tags.split(",").map((tag) => tag.trim()),
-      creatorId: new mongoose.Types.ObjectId(), // Replace with logged-in user or connected wallet address
-      memeLevel: "Common", // You can dynamically assign this later
-      popularityScore: 0,
-      mintedBy: [],
-      mintedAt: new Date(),
-    });
-
-    await newMeme.save();
-    res.redirect("/explore");
-  } catch (err) {
-    console.error("Minting error:", err);
-    res.status(500).send("Something went wrong while minting.");
   }
 });
 

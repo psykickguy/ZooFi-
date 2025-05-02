@@ -39,7 +39,8 @@
       <p><strong>Rarity:</strong> <%= meme.memeLevel %></p>
       <p><strong>Popularity Score:</strong> <%= meme.popularityScore %></p>
       <p>
-        <strong>Creator:</strong> <%= creator?.username || meme.creatorId %>
+        <strong>Creator:</strong> <%= meme.creatorId ? meme.creatorId.username :
+        "Unknown" %>
       </p>
 
       <div class="tags">

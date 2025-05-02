@@ -72,6 +72,7 @@ async function fetchRedditMemes() {
           console.log(
             "Saved meme:",
             meme.title,
+            meme.tags,
             meme.memeLevel,
             meme.popularityScore
           );
