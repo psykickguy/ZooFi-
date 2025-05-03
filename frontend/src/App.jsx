@@ -1,64 +1,49 @@
-// import { useWallet, useWalletKit } from "@mysten/wallet-adapter-react";
-// import { JsonRpcProvider, TransactionBlock } from "@mysten/sui.js";
-// import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// const PACKAGE_ID =
-//   "0xca8abb005600086467afe45d35abd49aab10518ff6ad8f1c415853945ca75d7c";
+import Explore from "./pages/memes/explore.jsx";
+import about from "./pages/memes/about.jsx";
+import faq from "./pages/memes/faq.jsx";
+import Home from "./pages/memes/home.jsx";
+import leaderboard from "./pages/memes/leaderboard.jsx";
+import memeDetails from "./pages/memes/memeDetails.jsx";
 
-// function App() {
-//   const { connected, account, signAndExecuteTransactionBlock } = useWalletKit();
-//   const [minting, setMinting] = useState(false);
+import mint from "./pages/my-memes/mint.jsx";
+import myMemes from "./pages/my-memes/myMemes.jsx";
 
-//   const mint = async () => {
-//     if (!connected) return alert("Connect your wallet first");
-//     setMinting(true);
-//     try {
-//       const tx = new TransactionBlock();
-//       tx.moveCall({
-//         target: `${PACKAGE_ID}::zoofi_nft::mint_nft`,
-//         arguments: [
-//           tx.pure("MyFirstMeme"), // name string
-//           tx.pure(1), // meme_level
-//         ],
-//       });
-//       const result = await signAndExecuteTransactionBlock({
-//         transactionBlock: tx,
-//       });
-//       console.log("Minted:", result);
-//       alert("MemeAnimal minted!");
-//     } catch (e) {
-//       console.error(e);
-//       alert("Mint failed");
-//     } finally {
-//       setMinting(false);
-//     }
-//   };
+import profile from "./pages/profile/profile.jsx";
+import editProfile from "./pages/profile/editProfile.jsx";
 
-//   return (
-//     <div className="p-8 space-y-4">
-//       <h1 className="text-3xl font-bold">🐵 ZooFi MemeAnimals</h1>
-//       {connected ? (
-//         <p>Connected: {account.address}</p>
-//       ) : (
-//         <button onClick={() => useWalletKit().connect()} className="btn">
-//           Connect Wallet
-//         </button>
-//       )}
-//       <button onClick={mint} disabled={!connected || minting} className="btn">
-//         {minting ? "Minting..." : "Mint MemeAnimal NFT"}
-//       </button>
-//     </div>
-//   );
-// }
+import login from "./pages/users/login.jsx";
+import signup from "./pages/users/signup.jsx";
 
-// export default App;
-import React from "react";
+import walletConnect from "./pages/wallet/walletConnect.jsx";
+
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+
+import "./App.css";
 
 function App() {
   return (
-    <div className="App" style={{ border: "2px solid red" }}>
-      <h1>Hello, World!</h1>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/mint" element={<mint />} />
+        <Route path="/login" element={<login />} />
+        <Route path="/signup" element={<signup />} />
+        <Route path="/my-memes" element={<myMemes />} />
+        <Route path="/meme/:id" element={<memeDetails />} />
+        <Route path="/about" element={<about />} />
+        <Route path="/faq" element={<faq />} />
+        <Route path="/leaderboard" element={<leaderboard />} />
+        <Route path="/profile" element={<profile />} />
+        <Route path="/edit-profile" element={<editProfile />} />
+        <Route path="/wallet-connect" element={<walletConnect />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 

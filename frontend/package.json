@@ -14,8 +14,10 @@
     "@mysten/wallet-adapter-react": "^11.0.0",
     "@mysten/wallet-adapter-wallet-standard": "^0.8.0",
     "@mysten/wallet-standard": "^0.14.7",
+    "axios": "^1.9.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.5.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
