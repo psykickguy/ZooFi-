@@ -4,7 +4,7 @@ const Magnet = ({
   children,
   padding = 100,
   disabled = false,
-  magnetStrength = 2,
+  magnetStrength = 1,
   activeTransition = "transform 0.3s ease-out",
   inactiveTransition = "transform 0.5s ease-in-out",
   wrapperClassName = "",

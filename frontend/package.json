@@ -14,14 +14,20 @@
     "@mysten/wallet-adapter-react": "^11.0.0",
     "@mysten/wallet-adapter-wallet-standard": "^0.8.0",
     "@mysten/wallet-standard": "^0.14.7",
+    "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
+    "@tailwindcss/vite": "^4.1.5",
     "axios": "^1.9.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.9.4",
+    "lucide-react": "^0.507.0",
     "ogl": "^1.0.11",
     "popmotion": "^11.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.3",
+    "tailwind-merge": "^3.2.0",
     "three": "^0.176.0"
   },
   "devDependencies": {
@@ -36,7 +42,8 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.4",
+    "tailwindcss": "^4.1.5",
+    "tw-animate-css": "^1.2.9",
     "vite": "^6.3.1"
   }
 }
