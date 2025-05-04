@@ -5,7 +5,7 @@ const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 
 // ----- Signup ----- //
-router.post("/api/auth/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const { username, email, walletAddress, password } = req.body;
   try {
     const user = new User({ username, email, walletAddress });
@@ -25,12 +25,12 @@ router.post("/api/auth/signup", async (req, res) => {
 });
 
 // ----- Login ----- //
-router.post("/api/auth/login", passport.authenticate("local"), (req, res) => {
+router.post("/login", passport.authenticate("local"), (req, res) => {
   res.status(200).json({ message: "Login successful", user: req.user });
 });
 
 // ----- Logout ----- //
-router.post("/api/auth/logout", (req, res, next) => {
+router.post("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     res.status(200).json({ message: "Logged out successfully" });

@@ -5,6 +5,7 @@ const Meme = require("../models/memes.js");
 const MintHistory = require("../models/mintHistory.js");
 // const { isLoggedIn } = require("../middleware.js");
 const Leaderboard = require("../models/LeaderboardEntry.js");
+const axios = require("axios");
 
 //Home Route
 router.get("/", async (req, res) => {
@@ -12,10 +13,22 @@ router.get("/", async (req, res) => {
     const trendingMemes = await Meme.find({})
       .sort({ popularityScore: -1 })
       .limit(10);
-    res.render("./memes/home.ejs", { trendingMemes });
+    res.json(trendingMemes);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
+  }
+});
+
+router.get("/api/image-proxy", async (req, res) => {
+  const imageUrl = req.query.url;
+  try {
+    const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
+    res.set("Content-Type", response.headers["content-type"]);
+    res.send(response.data);
+  } catch (err) {
+    console.error("Image proxy error:", err.message);
+    res.status(500).send("Failed to fetch image");
   }
 });
 
@@ -36,7 +49,8 @@ router.get("/explore", async (req, res) => {
 
   try {
     const memes = await Meme.find(filter).sort(sortOption).limit(50);
-    res.render("memes/explore.ejs", { memes });
+    const memeUrls = memes.map((meme) => meme.imageUrl); // or meme.img if that's your field
+    res.json({ memeUrls });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading memes.");
