@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
+const cors = require("cors");
 const User = require("./models/users.js");
+
 // const ObjectId = mongoose.Types.ObjectId;
 
 const memesRouter = require("./routes/memes.js");
@@ -26,6 +28,13 @@ main()
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your frontend origin
+    credentials: true,
+  })
+);
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));

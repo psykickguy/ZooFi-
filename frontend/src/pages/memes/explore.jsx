@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api.js";
 import MemeCard from "../../components/MemeCard.jsx";
+import "./memes.css";
 
 const Explore = () => {
   const [memes, setMemes] = useState([]);

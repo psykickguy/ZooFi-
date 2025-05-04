@@ -1,11 +1,11 @@
+// src/components/Footer.jsx
 import React from "react";
+import "./Components.css";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <nav>
-      <h1>ZooFi - Footer</h1>
-    </nav>
+    <footer className="footer">
+      <p>&copy; {new Date().getFullYear()} ZooFi. All rights reserved.</p>
+    </footer>
   );
-};
-
-export default Footer; // ✅ THIS is important
+}

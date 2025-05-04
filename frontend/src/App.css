@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.app-container {
+  position: relative;
+  z-index: 1;
+}
