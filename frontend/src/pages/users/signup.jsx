@@ -20,7 +20,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/auth/signup", form);
+      await api.post("/signup", form);
       nav("/explore");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");

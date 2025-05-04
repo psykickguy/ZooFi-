@@ -28,8 +28,8 @@ export function IconCloud({ icons, images }) {
 
     const newIconCanvases = items.map((item, index) => {
       const offscreen = document.createElement("canvas");
-      offscreen.width = 40;
-      offscreen.height = 40;
+      offscreen.width = 160;
+      offscreen.height = 160;
       const offCtx = offscreen.getContext("2d");
 
       if (offCtx) {
@@ -40,15 +40,16 @@ export function IconCloud({ icons, images }) {
           img.src = items[index];
           img.onload = () => {
             offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
+            offCtx.imageSmoothingEnabled = false;
 
             // Create circular clipping path
             offCtx.beginPath();
-            offCtx.arc(20, 20, 20, 0, Math.PI * 2);
+            offCtx.arc(80, 80, 80, 0, Math.PI * 2);
             offCtx.closePath();
             offCtx.clip();
 
             // Draw the image
-            offCtx.drawImage(img, 0, 0, 40, 40);
+            offCtx.drawImage(img, 0, 0, 160, 160);
 
             imagesLoadedRef.current[index] = true;
           };
@@ -255,7 +256,7 @@ export function IconCloud({ icons, images }) {
             iconCanvasesRef.current[index] &&
             imagesLoadedRef.current[index]
           ) {
-            ctx.drawImage(iconCanvasesRef.current[index], -40, -40, 80, 80);
+            ctx.drawImage(iconCanvasesRef.current[index], -80, -80, 160, 160);
           }
         } else {
           // Show numbered circles if no icons/images are provided

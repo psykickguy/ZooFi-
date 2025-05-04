@@ -1,49 +1,27 @@
 import "./styles.css";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useEffect, useState } from "react";
 import { motion, useTransform, useScroll, useTime } from "framer-motion";
 import { degreesToRadians, progress, mix } from "popmotion";
 import { IconCloud } from "./magicui/icon-cloud";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
-import { Billboard } from "@react-three/drei";
 
 import dogeImg from "../assets/dogecoin.png";
 
 const color = "#111111";
 
-const images = [
-  "https://images.unsplash.com/photo-1720048171230-c60d162f93a0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675553988173-a5249b5815fe?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675297844586-534b030564e0?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675555581018-7f1a352ff9a6?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1719937050517-68d4e2a1702e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1720048171230-c60d162f93a0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675553988173-a5249b5815fe?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675297844586-534b030564e0?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675555581018-7f1a352ff9a6?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1719937050517-68d4e2a1702e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1720048171230-c60d162f93a0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675553988173-a5249b5815fe?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675297844586-534b030564e0?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1675555581018-7f1a352ff9a6?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1719937050517-68d4e2a1702e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-];
-
 const Icosahedron = () => (
   <mesh rotation-x={0.35}>
-    {/* <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background">
-      <IconCloud images={images} />
-    </div> */}
     <icosahedronGeometry args={[1, 0]} />
     <meshBasicMaterial wireframe color={color} />
-    {/* <IconCloud images={images} /> */}
   </mesh>
 );
 
 const Star = ({ p }) => {
   const ref = useRef(null);
-  const texture = useLoader(TextureLoader, dogeImg);
+
+  const texture = useLoader(TextureLoader, dogeImg); // ✅ only one texture per star
 
   useLayoutEffect(() => {
     const distance = mix(3, 8, Math.random());
@@ -103,20 +81,36 @@ function Scene({ numStars = 300 }) {
     stars.push(<Star key={i} p={progress(0, numStars, i)} />);
   }
 
-  return (
-    <>
-      {/* <Icosahedron /> */}
-      {stars}
-      {/* <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <IconCloud images={images} />
-      </div> */}
-    </>
-  );
+  return <>{stars}</>;
 }
 
 export default function Background() {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1.5]);
+
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchTrendingMemes = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/memes");
+        const data = await response.json();
+        const topMemes = data
+          .slice(0, 300)
+          .map(
+            (meme) =>
+              `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
+                meme.imageUrl
+              )}`
+          );
+        setImages(topMemes);
+      } catch (error) {
+        console.error("Error fetching trending memes:", error);
+      }
+    };
+
+    fetchTrendingMemes();
+  }, []);
 
   return (
     <div className="canvas-bg relative w-full h-screen">
