@@ -20,7 +20,7 @@ import walletConnect from "./pages/wallet/walletConnect.jsx";
 
 import Background from "./components/Background";
 import Navbar from "./components/Navbar.jsx";
-import Footer from "./components/Footer.jsx";
+import CustomFooter from "./components/Footer.jsx";
 
 import "./App.css";
 
@@ -56,7 +56,7 @@ function App() {
             <Route path="/edit-profile" element={<editProfile />} />
             <Route path="/wallet-connect" element={<walletConnect />} />
           </Routes>
-          <Footer />
+          <CustomFooter className="footer" />
         </div>
       </div>
     </Router>

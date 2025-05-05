@@ -45,3 +45,11 @@
   position: relative;
   z-index: 1;
 }
+
+.footer {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  margin-top: 10rem;
+}
