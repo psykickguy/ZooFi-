@@ -14,6 +14,8 @@ import {
   FaMoon,
   FaSun,
 } from "react-icons/fa"; // icon examples
+import "./Dock.css"; // your styles
+import FuzzyText from "./FuzzyText";
 
 const isLoggedIn = false; // Replace with actual auth logic
 
@@ -25,17 +27,7 @@ const Navbar = () => {
     document.documentElement.classList.toggle("dark", !darkMode);
   };
 
-  const navItems = [
-    {
-      icon: (
-        <span className="text-white text-xl font-bold tracking-wide px-2">
-          Zoofi-
-        </span>
-      ),
-      label: "", // No tooltip needed
-      onClick: () => navigate("/"),
-      className: "zoofi-no-box", // Optional: used to disable hover/magnify
-    },
+  const leftItems = [
     {
       icon: <FaCompass size={24} color="#fff" />,
       label: "Explore",
@@ -56,6 +48,9 @@ const Navbar = () => {
       label: "Mint",
       onClick: () => (window.location.href = "/mint"),
     },
+  ];
+
+  const rightItems = [
     {
       icon: darkMode ? (
         <FaSun size={24} color="#fff" />
@@ -93,16 +88,38 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="navbar-dock-wrapper">
-      <Dock
-        items={navItems}
-        panelHeight={72}
-        dockHeight={100}
-        baseItemSize={48}
-        magnification={72}
-        distance={150}
-        spring={{ mass: 0.1, stiffness: 150, damping: 12 }}
-      />
+    <div className="navbar-container">
+      <div className="Home-Logo">
+        <Link to="/" className="navbar-logo">
+          <FuzzyText
+            baseIntensity={0.2}
+            hoverIntensity={0.5}
+            enableHover={true}
+          >
+            Zoofi-
+          </FuzzyText>
+        </Link>
+      </div>
+      <div className="options">
+        <Dock
+          items={leftItems}
+          panelHeight={72}
+          dockHeight={100}
+          baseItemSize={48}
+          magnification={72}
+          distance={150}
+          spring={{ mass: 0.1, stiffness: 150, damping: 12 }}
+        />
+        <Dock
+          items={rightItems}
+          panelHeight={72}
+          dockHeight={100}
+          baseItemSize={48}
+          magnification={72}
+          distance={150}
+          spring={{ mass: 0.1, stiffness: 150, damping: 12 }}
+        />
+      </div>
     </div>
   );
 };

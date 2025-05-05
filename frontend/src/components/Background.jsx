@@ -25,7 +25,7 @@ const Star = ({ p }) => {
   const texture = useLoader(TextureLoader, dogeImg); // ✅ only one texture per star
 
   useLayoutEffect(() => {
-    const distance = mix(3, 8, Math.random());
+    const distance = mix(5, 15, Math.random());
     const yAngle = mix(
       degreesToRadians(80),
       degreesToRadians(100),
@@ -52,7 +52,7 @@ const Star = ({ p }) => {
   );
 };
 
-function Scene({ numStars = 300 }) {
+function Scene({ numStars = 400 }) {
   const gl = useThree((state) => state.gl);
   const { scrollYProgress } = useScroll();
   const yAngle = useTransform(
