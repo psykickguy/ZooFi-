@@ -6,6 +6,7 @@ import { degreesToRadians, progress, mix } from "popmotion";
 import { IconCloud } from "./magicui/icon-cloud";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
+import Particles from "./Particles";
 
 import dogeImg from "../assets/dogecoin.png";
 
@@ -126,6 +127,18 @@ export default function Background() {
       >
         <IconCloud images={images} />
       </motion.div>
+      {/* <div style={{ width: "100%", height: "600px", position: "fixed" }}> */}
+      <Particles
+        particleColors={["#ffffff", "#ffffff"]}
+        particleCount={500}
+        particleSpread={10}
+        speed={0.5}
+        particleBaseSize={150}
+        moveParticlesOnHover={true}
+        alphaParticles={false}
+        disableRotation={false}
+      />
+      {/* </div> */}
     </div>
   );
 }
