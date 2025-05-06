@@ -21,12 +21,16 @@ import walletConnect from "./pages/wallet/walletConnect.jsx";
 import Background from "./components/Background";
 import Navbar from "./components/Navbar.jsx";
 import CustomFooter from "./components/Footer.jsx";
+import SidePanel from "./components/SidePanel.jsx";
 
 import "./App.css";
 
 function App() {
   return (
     <Router>
+      <div className="sidepanel-fixed">
+        <SidePanel />
+      </div>
       <div className="app-container">
         <Background />
         <div
