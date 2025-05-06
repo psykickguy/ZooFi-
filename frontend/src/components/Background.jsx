@@ -7,6 +7,7 @@ import { IconCloud } from "./magicui/icon-cloud";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import Particles from "./Particles";
+import Parallax from "./Parallax";
 
 import dogeImg from "../assets/dogecoin.png";
 
@@ -138,6 +139,7 @@ export default function Background() {
         alphaParticles={false}
         disableRotation={false}
       />
+      <Parallax />
       {/* </div> */}
     </div>
   );
