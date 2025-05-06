@@ -28,9 +28,6 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <div className="sidepanel-fixed">
-        <SidePanel />
-      </div>
       <div className="app-container">
         <Background />
         <div
@@ -41,6 +38,7 @@ function App() {
             paddingRight: "1rem",
           }}
         >
+          <SidePanel />
           <Navbar />
           <Routes>
             <Route path="/signup" element={<Signup />} />

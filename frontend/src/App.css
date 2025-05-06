@@ -53,17 +53,3 @@
   width: calc(100vw + 1rem);
   margin-top: 10rem;
 }
-
-.sidepanel-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: 100vh;
-  z-index: 1001;
-  /* background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; */
-}
