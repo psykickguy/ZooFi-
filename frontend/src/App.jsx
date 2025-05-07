@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Explore from "./pages/memes/explore.jsx";
 import about from "./pages/memes/about.jsx";
-import Particles from "./pages/memes/faq.jsx";
 import Home from "./pages/memes/home.jsx";
 import leaderboard from "./pages/memes/leaderboard.jsx";
 import memeDetails from "./pages/memes/memeDetails.jsx";
@@ -22,6 +21,7 @@ import Background from "./components/Background";
 import Navbar from "./components/Navbar.jsx";
 import CustomFooter from "./components/Footer.jsx";
 import SidePanel from "./components/SidePanel.jsx";
+import Particles from "./components/Particles.jsx";
 
 import "./App.css";
 
@@ -30,6 +30,7 @@ function App() {
     <Router>
       <div className="app-container">
         <Background />
+
         <div
           style={{
             position: "relative",
@@ -38,6 +39,16 @@ function App() {
             paddingRight: "1rem",
           }}
         >
+          <Particles
+            particleColors={["#ffffff", "#ffffff"]}
+            particleCount={500}
+            particleSpread={10}
+            speed={0.5}
+            particleBaseSize={150}
+            moveParticlesOnHover={true}
+            alphaParticles={false}
+            disableRotation={false}
+          />
           <SidePanel />
           <Navbar />
           <Routes>
