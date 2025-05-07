@@ -1,6 +1,6 @@
 .glitch {
   color: #fff;
-  font-size: clamp(2rem, 10vw, 8rem);
+  font-size: clamp(2rem, 10vw, 4rem);
   white-space: nowrap;
   font-weight: 900;
   position: relative;

@@ -92,8 +92,8 @@ const ScrollReveal = ({
             scrollTrigger: {
               trigger: el,
               scroller,
-              start: "top bottom-=20%",
-              end: wordAnimationEnd,
+              start: "center+=10% center",
+              end: "center-=10% center",
               scrub: true,
             },
           }

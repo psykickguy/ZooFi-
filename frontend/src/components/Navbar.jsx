@@ -62,7 +62,7 @@ const Navbar = () => {
       ) : (
         <FaSun size={24} color="#fff" />
       ),
-      label: isDark ? "Light Mode" : "Dark Mode",
+      label: isDark ? "Dark Mode" : "Light Mode",
       onClick: toggleTheme,
     },
     ...(isLoggedIn

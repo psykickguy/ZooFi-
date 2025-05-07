@@ -23,6 +23,11 @@ import HeroVideoDialog from "../../components/magicui/hero-video-dialog";
 import ScrollReveal from "./ScrollReveal";
 import FadeContent from "./FadeContent";
 import FuzzyText from "../../components/FuzzyText";
+import ASCIIText from "./ASCIIText";
+import FallingText from "./FallingText";
+import PixelCard from "./PixelCard";
+import ScrollLinked from "./ScrollLinked";
+import GlitchText from "./GlitchText";
 
 const Section = ({ id, title, linkTo, children }) => (
   <section
@@ -64,6 +69,7 @@ const Home = () => {
           linkTo="/about"
         >
           <br />
+          {/* <PixelCard variant="blue"> */}
           <div className="relative bg-gradient-to-br from-[#1a1a1a] to-black rounded-2xl p-6 md:p-10 border border-white/10 shadow-xl shadow-pink-500/10">
             <p className="text-xl md:text-2xl leading-relaxed text-white font-medium tracking-wide animate-fade-in-up">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 font-bold">
@@ -78,10 +84,11 @@ const Home = () => {
               Meme On 🚀
             </div>
           </div>
+          {/* </PixelCard> */}
         </Section>
       </FadeContent>
 
-      {/* <ScrollReveal
+      <ScrollReveal
         baseOpacity={0}
         enableBlur={true}
         baseRotation={5}
@@ -91,14 +98,14 @@ const Home = () => {
       >
         <Section>
           <HeroVideoDialog
-            className="block dark:hidden"
+            className="block"
             animationStyle="from-center"
             videoSrc="https://www.example.com/dummy-video"
             thumbnailSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp91mofXYaK8RLg8wYKiFzIhiRNuiHabvtjg&s"
             thumbnailAlt="Dummy Video Thumbnail"
           />
         </Section>
-      </ScrollReveal> */}
+      </ScrollReveal>
       {/* <ScrollReveal
         baseOpacity={0}
         enableBlur={true}
@@ -113,14 +120,38 @@ const Home = () => {
       </ScrollReveal> */}
 
       {/* 2. Trending Memes */}
-      <Section id="trending" title="Trending Memes 🔥" linkTo="/trending">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Placeholder for meme cards */}
+      <ScrollReveal
+        baseOpacity={0}
+        enableBlur={true}
+        baseRotation={5}
+        blurStrength={10}
+        containerClassName="my-20"
+        textClassName="space-y-4"
+      >
+        <Section
+          id="trending"
+          title={
+            <>
+              <GlitchText
+                speed={1}
+                enableShadows={true}
+                enableOnHover={true}
+                className="custom-class"
+              >
+                Trending Memes 🔥
+              </GlitchText>
+            </>
+          }
+          linkTo="/explore"
+        >
+          <ScrollLinked />
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 1</div>
           <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 2</div>
           <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 3</div>
-        </div>
-      </Section>
+        </div> */}
+        </Section>
+      </ScrollReveal>
 
       {/* 3. Leaderboard */}
       <Section id="leaderboard" title="Leaderboard 🏆" linkTo="/leaderboard">
