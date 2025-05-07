@@ -9,6 +9,8 @@ import { TextureLoader } from "three";
 import Particles from "./Particles";
 import Parallax from "./Parallax";
 
+import CustomFooter from "./Footer.jsx";
+
 import dogeImg from "../assets/dogecoin.png";
 
 const color = "#111111";
@@ -129,7 +131,7 @@ export default function Background() {
         <IconCloud images={images} />
       </motion.div>
       {/* <div style={{ width: "100%", height: "600px", position: "fixed" }}> */}
-      <Particles
+      {/* <Particles
         particleColors={["#ffffff", "#ffffff"]}
         particleCount={500}
         particleSpread={10}
@@ -138,9 +140,10 @@ export default function Background() {
         moveParticlesOnHover={true}
         alphaParticles={false}
         disableRotation={false}
-      />
+      /> */}
       <Parallax />
       {/* </div> */}
+      {/* <CustomFooter /> */}
     </div>
   );
 }

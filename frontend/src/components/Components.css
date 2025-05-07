@@ -1,3 +1,15 @@
+.footer {
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw + 1rem);
+  margin-top: 10rem;
+  /* background-color: #282c34; */
+  padding: 2rem;
+  /* bottom: 0; */
+}
+
 .footer-content {
   display: flex;
   flex-direction: column;

@@ -18,7 +18,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import BentoDemo from "./BentoDemo.jsx";
+// import BentoDemo from "./BentoDemo.jsx";
+import HeroVideoDialog from "../../components/magicui/hero-video-dialog";
+import ScrollReveal from "./ScrollReveal";
+import FadeContent from "./FadeContent";
+import FuzzyText from "../../components/FuzzyText";
 
 const Section = ({ id, title, linkTo, children }) => (
   <section
@@ -26,7 +30,7 @@ const Section = ({ id, title, linkTo, children }) => (
     className="min-h-screen flex flex-col justify-center items-center px-[10vw] py-16 border-b border-gray-300"
   >
     <Link to={linkTo}>
-      <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center hover:underline">
+      <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center text-white">
         {title}
       </h2>
     </Link>
@@ -38,18 +42,75 @@ const Home = () => {
   return (
     <div className="w-full">
       {/* 1. Project Description */}
-      <Section id="about" title="Welcome to ZooFi 🦍" linkTo="/about">
-        <p className="text-lg md:text-xl leading-relaxed">
-          ZooFi is the ultimate Web3 meme platform. Discover hilarious content,
-          mint your own memes as NFTs, explore trending creations, and climb the
-          leaderboard to earn fame and rewards. Unleash your inner meme-lord in
-          the world of crypto!
-        </p>
-      </Section>
+      <FadeContent
+        blur={true}
+        duration={1000}
+        easing="ease-out"
+        initialOpacity={0}
+      >
+        <Section
+          id="about"
+          title={
+            <>
+              <FuzzyText
+                baseIntensity={0.2}
+                hoverIntensity={0.5}
+                enableHover={true}
+              >
+                Welcome to ZooFi-
+              </FuzzyText>
+            </>
+          }
+          linkTo="/about"
+        >
+          <br />
+          <div className="relative bg-gradient-to-br from-[#1a1a1a] to-black rounded-2xl p-6 md:p-10 border border-white/10 shadow-xl shadow-pink-500/10">
+            <p className="text-xl md:text-2xl leading-relaxed text-white font-medium tracking-wide animate-fade-in-up">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 font-bold">
+                ZooFi
+              </span>{" "}
+              is the wildest Web3 meme jungle 🐒. Dive into a world where memes
+              aren't just funny—they're mintable, tradeable, and legendary.
+              Climb the meme-lord leaderboard, flex your creations as NFTs, and
+              earn rewards for your viral genius.
+            </p>
+            <div className="absolute -top-4 -right-4 bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md animate-pulse">
+              Meme On 🚀
+            </div>
+          </div>
+        </Section>
+      </FadeContent>
 
-      <Section>
-        <BentoDemo />
-      </Section>
+      <ScrollReveal
+        baseOpacity={0}
+        enableBlur={true}
+        baseRotation={5}
+        blurStrength={10}
+        containerClassName="my-20"
+        textClassName="space-y-4"
+      >
+        <Section>
+          <HeroVideoDialog
+            className="block dark:hidden"
+            animationStyle="from-center"
+            videoSrc="https://www.example.com/dummy-video"
+            thumbnailSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp91mofXYaK8RLg8wYKiFzIhiRNuiHabvtjg&s"
+            thumbnailAlt="Dummy Video Thumbnail"
+          />
+        </Section>
+      </ScrollReveal>
+      {/* <ScrollReveal
+        baseOpacity={0}
+        enableBlur={true}
+        baseRotation={5}
+        blurStrength={10}
+        containerClassName="my-20"
+        textClassName="space-y-4"
+      >
+        <Section>
+          <BentoDemo />
+        </Section>
+      </ScrollReveal> */}
 
       {/* 2. Trending Memes */}
       <Section id="trending" title="Trending Memes 🔥" linkTo="/trending">

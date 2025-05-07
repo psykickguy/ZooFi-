@@ -69,7 +69,6 @@ function App() {
             <Route path="/edit-profile" element={<editProfile />} />
             <Route path="/wallet-connect" element={<walletConnect />} />
           </Routes>
-          <CustomFooter className="footer" />
         </div>
       </div>
     </Router>
