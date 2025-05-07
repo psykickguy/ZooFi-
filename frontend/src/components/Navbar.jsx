@@ -16,15 +16,20 @@ import {
 } from "react-icons/fa"; // icon examples
 import "./Dock.css"; // your styles
 import FuzzyText from "./FuzzyText";
+import { useTheme } from "./theme-provider";
 
 const isLoggedIn = false; // Replace with actual auth logic
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const { theme, setTheme } = useTheme();
+
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark", !darkMode);
+    setTheme(isDark ? "light" : "dark");
   };
 
   const leftItems = [
@@ -52,12 +57,12 @@ const Navbar = () => {
 
   const rightItems = [
     {
-      icon: darkMode ? (
-        <FaSun size={24} color="#fff" />
-      ) : (
+      icon: isDark ? (
         <FaMoon size={24} color="#fff" />
+      ) : (
+        <FaSun size={24} color="#fff" />
       ),
-      label: darkMode ? "Light Mode" : "Dark Mode",
+      label: isDark ? "Light Mode" : "Dark Mode",
       onClick: toggleTheme,
     },
     ...(isLoggedIn

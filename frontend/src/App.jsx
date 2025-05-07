@@ -22,56 +22,59 @@ import Navbar from "./components/Navbar.jsx";
 import CustomFooter from "./components/Footer.jsx";
 import SidePanel from "./components/SidePanel.jsx";
 import Particles from "./components/Particles.jsx";
+import { ThemeProvider } from "./components/theme-provider.jsx";
 
 import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <Background />
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Router>
+        <div className="app-container">
+          <Background />
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 1,
-            minHeight: "100vh",
-            paddingRight: "1rem",
-          }}
-        >
-          <Particles
-            particleColors={["#ffffff", "#ffffff"]}
-            particleCount={500}
-            particleSpread={10}
-            speed={0.5}
-            particleBaseSize={150}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-          />
-          <SidePanel />
-          <Navbar />
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+              minHeight: "100vh",
+              paddingRight: "1rem",
+            }}
+          >
+            <Particles
+              particleColors={["#ffffff", "#ffffff"]}
+              particleCount={500}
+              particleSpread={10}
+              speed={0.5}
+              particleBaseSize={150}
+              moveParticlesOnHover={true}
+              alphaParticles={false}
+              disableRotation={false}
+            />
+            <SidePanel />
+            <Navbar />
+            <Routes>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
 
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/mint" element={<mint />} />
-            <Route path="/login" element={<login />} />
-            <Route path="/signup" element={<signup />} />
-            <Route path="/my-memes" element={<myMemes />} />
-            <Route path="/meme/:id" element={<memeDetails />} />
-            <Route path="/about" element={<about />} />
-            <Route path="/faq" element={<faq />} />
-            <Route path="/leaderboard" element={<leaderboard />} />
-            <Route path="/profile" element={<profile />} />
-            <Route path="/edit-profile" element={<editProfile />} />
-            <Route path="/wallet-connect" element={<walletConnect />} />
-          </Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/mint" element={<mint />} />
+              <Route path="/login" element={<login />} />
+              <Route path="/signup" element={<signup />} />
+              <Route path="/my-memes" element={<myMemes />} />
+              <Route path="/meme/:id" element={<memeDetails />} />
+              <Route path="/about" element={<about />} />
+              <Route path="/faq" element={<faq />} />
+              <Route path="/leaderboard" element={<leaderboard />} />
+              <Route path="/profile" element={<profile />} />
+              <Route path="/edit-profile" element={<editProfile />} />
+              <Route path="/wallet-connect" element={<walletConnect />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

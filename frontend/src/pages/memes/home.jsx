@@ -81,7 +81,7 @@ const Home = () => {
         </Section>
       </FadeContent>
 
-      <ScrollReveal
+      {/* <ScrollReveal
         baseOpacity={0}
         enableBlur={true}
         baseRotation={5}
@@ -98,7 +98,7 @@ const Home = () => {
             thumbnailAlt="Dummy Video Thumbnail"
           />
         </Section>
-      </ScrollReveal>
+      </ScrollReveal> */}
       {/* <ScrollReveal
         baseOpacity={0}
         enableBlur={true}

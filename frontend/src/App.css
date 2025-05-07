@@ -5,6 +5,22 @@
   text-align: center;
 }
 
+body {
+  /* background-color: #222; */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html.light body {
+  background-color: #ffbb00;
+  color: black;
+}
+
+/* Dark Mode */
+html.dark body {
+  background-color: #222;
+  color: white;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
