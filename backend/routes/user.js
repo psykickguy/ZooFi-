@@ -46,17 +46,17 @@ router.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
 
-router.post(
-  "/login",
-  saveRedirectUrl,
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureMessage: true,
-  }),
-  (req, res) => {
-    let redirectUrl = res.locals.redirectUrl || "/memes";
-    res.redirect(redirectUrl);
-  }
-);
+// router.post(
+//   "/login",
+//   saveRedirectUrl,
+//   passport.authenticate("local", {
+//     failureRedirect: "/login",
+//     failureMessage: true,
+//   }),
+//   (req, res) => {
+//     let redirectUrl = res.locals.redirectUrl || "/memes";
+//     res.redirect(redirectUrl);
+//   }
+// );
 
 module.exports = router;

@@ -45,7 +45,16 @@ app.get("/", (req, res) => {
 });
 
 app.use(
-  session({ secret: "zoofi-secret", resave: false, saveUninitialized: true })
+  session({
+    secret: "zoofi-secret",
+    resave: false,
+    saveUninitialized: false, // better security: don’t store empty sessions
+    cookie: {
+      httpOnly: true,
+      secure: false, // true if using HTTPS
+      sameSite: "lax", // or "none" if frontend and backend are on different origins
+    },
+  })
 );
 
 app.use(passport.initialize());
@@ -61,7 +70,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/memes", memesRouter);
-app.use("/", userRouter);
+app.use("/api", userRouter);
 app.use("/profile", profileRoutes);
 app.use("/", walletRoutes);
 app.use("/my-memes", myMemesRoutes);

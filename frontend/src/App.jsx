@@ -32,7 +32,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <div className="app-container">
-          <SmoothCursor />
+          {/* <SmoothCursor /> */}
           <Background />
 
           <div

@@ -63,3 +63,12 @@
   opacity: 0;
   z-index: 3;
 }
+
+.tilted-card-demo-text {
+  color: white;
+  font-size: 1rem;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  text-align: center;
+}

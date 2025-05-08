@@ -69,7 +69,8 @@ router.get("/leaderboard", async (req, res) => {
       .limit(10)
       .populate("userId");
 
-    res.render("memes/leaderboard.ejs", { topMemes, topUsers });
+    res.json({ topMemes, topUsers });
+    // res.render("memes/leaderboard.ejs", { topMemes, topUsers });
   } catch (err) {
     console.error("Leaderboard Error:", err);
     res.status(500).send("Server Error");

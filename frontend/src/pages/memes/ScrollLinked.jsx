@@ -9,6 +9,7 @@ import {
   useScroll,
 } from "framer-motion";
 import TiltedCard from "./TiltedCard";
+import { Link } from "react-router-dom";
 
 export default function ScrollLinked() {
   const [memes, setMemes] = useState([]);
@@ -23,11 +24,14 @@ export default function ScrollLinked() {
         const response = await fetch("http://localhost:8080/memes");
         const data = await response.json();
 
+        console.log("Fetched memes:", data); // Debugging line
+
         const topMemes = data.slice(0, 300).map((meme) => ({
           imageUrl: `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
             meme.imageUrl
           )}`,
-          title: meme.title, // Assuming the meme has a title field
+          title: meme.title,
+          id: meme._id, // Assuming the meme has a title field
         }));
 
         setMemes(topMemes);
@@ -50,23 +54,25 @@ export default function ScrollLinked() {
       >
         {memes.map((meme, index) => (
           <li key={index}>
-            <TiltedCard
-              imageSrc={meme.imageUrl}
-              altText={`Meme ${index + 1}`}
-              captionText={meme.title}
-              containerHeight="auto"
-              containerWidth="300px"
-              imageHeight="300px"
-              imageWidth="300px"
-              rotateAmplitude={12}
-              scaleOnHover={1.2}
-              showMobileWarning={false}
-              showTooltip={true}
-              displayOverlayContent={true}
-              overlayContent={
-                <p className="tilted-card-demo-text">{meme.title}</p>
-              }
-            />
+            <Link to={`/meme/${meme.id}`}>
+              <TiltedCard
+                imageSrc={meme.imageUrl}
+                altText={`Meme ${index + 1}`}
+                captionText={meme.title}
+                containerHeight="auto"
+                containerWidth="300px"
+                imageHeight="300px"
+                imageWidth="300px"
+                rotateAmplitude={12}
+                scaleOnHover={1.2}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <p className="tilted-card-demo-text">{meme.title}</p>
+                }
+              />
+            </Link>
           </li>
         ))}
       </motion.ul>
@@ -127,7 +133,8 @@ function StyleSheet() {
       #example ul {
         display: flex;
         list-style: none;
-        // height: 500pxx;
+        height: 380px;
+        // background-color: green;
         overflow-x: scroll;
         padding: 20px 0;
         margin: 0 auto;
@@ -148,6 +155,7 @@ function StyleSheet() {
       #example li {
         flex: 0 0 300px;
         background: var(--accent, #ff0088);
+        background-color: transparent;
         display: flex;
         justify-content: center;
         align-items: center;

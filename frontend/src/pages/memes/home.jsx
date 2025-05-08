@@ -23,6 +23,7 @@ import HeroVideoDialog from "../../components/magicui/hero-video-dialog";
 import ScrollReveal from "./ScrollReveal";
 import FadeContent from "./FadeContent";
 import FuzzyText from "../../components/FuzzyText";
+import CustomFooter from "../../components/Footer";
 import ASCIIText from "./ASCIIText";
 import FallingText from "./FallingText";
 import PixelCard from "./PixelCard";
@@ -156,25 +157,56 @@ const Home = () => {
 
       {/* 3. Leaderboard */}
       <Section id="leaderboard" title="Leaderboard 🏆" linkTo="/leaderboard">
-        <div className="flex justify-center items-end gap-8">
+        <div className="flex flex-col md:flex-row justify-center items-start gap-12">
+          {/* Top 3 Memes */}
           <div className="flex flex-col items-center">
-            <div className="bg-yellow-400 w-16 h-32 rounded-t-full shadow-md">
-              🥇
+            <h3 className="text-xl font-semibold mb-4">Top 3 Memes 😂</h3>
+            <div className="flex justify-center items-end gap-8">
+              <div className="flex flex-col items-center">
+                <div className="bg-yellow-400 w-16 h-32 rounded-t-full shadow-md">
+                  🥇
+                </div>
+                <p className="mt-2 font-bold">1st</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-gray-300 w-16 h-24 rounded-t-full shadow-md">
+                  🥈
+                </div>
+                <p className="mt-2 font-bold">2nd</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-orange-300 w-16 h-20 rounded-t-full shadow-md">
+                  🥉
+                </div>
+                <p className="mt-2 font-bold">3rd</p>
+              </div>
             </div>
-            <p className="mt-2 font-bold">1st</p>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="bg-gray-300 w-16 h-24 rounded-t-full shadow-md">
-              🥈
+
+          {/* Top 3 Users */}
+          {/* <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold mb-4">Top 3 Users 👤</h3>
+            <div className="flex justify-center items-end gap-8">
+              <div className="flex flex-col items-center">
+                <div className="bg-yellow-400 w-16 h-32 rounded-t-full shadow-md">
+                  🥇
+                </div>
+                <p className="mt-2 font-bold">1st</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-gray-300 w-16 h-24 rounded-t-full shadow-md">
+                  🥈
+                </div>
+                <p className="mt-2 font-bold">2nd</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-orange-300 w-16 h-20 rounded-t-full shadow-md">
+                  🥉
+                </div>
+                <p className="mt-2 font-bold">3rd</p>
+              </div>
             </div>
-            <p className="mt-2 font-bold">2nd</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="bg-orange-300 w-16 h-20 rounded-t-full shadow-md">
-              🥉
-            </div>
-            <p className="mt-2 font-bold">3rd</p>
-          </div>
+          </div> */}
         </div>
       </Section>
 
@@ -209,6 +241,7 @@ const Home = () => {
           </Link>
         </div>
       </Section>
+      {/* <CustomFooter /> */}
     </div>
   );
 };
