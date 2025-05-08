@@ -92,8 +92,8 @@ const ScrollReveal = ({
             scrollTrigger: {
               trigger: el,
               scroller,
-              start: "center+=10% center",
-              end: "center-=10% center",
+              start: "center+=20% center",
+              end: "center-=20% center",
               scrub: true,
             },
           }

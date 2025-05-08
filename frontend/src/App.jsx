@@ -23,6 +23,7 @@ import CustomFooter from "./components/Footer.jsx";
 import SidePanel from "./components/SidePanel.jsx";
 import Particles from "./components/Particles.jsx";
 import { ThemeProvider } from "./components/theme-provider.jsx";
+import { SmoothCursor } from "./components/ui/smooth-cursor";
 
 import "./App.css";
 
@@ -31,6 +32,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <div className="app-container">
+          <SmoothCursor />
           <Background />
 
           <div

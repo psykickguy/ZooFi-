@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+* {
+  cursor: none !important;
+}
+
 body {
   /* background-color: #222; */
   transition: background-color 0.3s, color 0.3s;
