@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import TiltedCard from "./TiltedCard";
 import { Link } from "react-router-dom";
+import { NeonGradientCard } from "../../components/magicui/neon-gradient-card";
 
 export default function ScrollLinked() {
   const [memes, setMemes] = useState([]);
@@ -50,41 +51,43 @@ export default function ScrollLinked() {
   }, []);
 
   return (
-    <div id="example">
-      <motion.ul
-        ref={ref}
-        style={{
-          WebkitMaskImage: maskImage,
-          maskImage: maskImage,
-        }}
-      >
-        {memes.map((meme, index) => (
-          <li key={index}>
-            <Link to={`/meme/${meme.id}`}>
-              <TiltedCard
-                imageSrc={meme.imageUrl}
-                // altText={`Meme ${index + 1}`}
-                altText={``}
-                captionText={meme.title}
-                containerHeight="auto"
-                containerWidth="300px"
-                imageHeight="300px"
-                imageWidth="300px"
-                rotateAmplitude={12}
-                scaleOnHover={1.2}
-                showMobileWarning={false}
-                showTooltip={true}
-                displayOverlayContent={true}
-                overlayContent={
-                  <p className="tilted-card-demo-text">{meme.title}</p>
-                }
-              />
-            </Link>
-          </li>
-        ))}
-      </motion.ul>
-      <StyleSheet />
-    </div>
+    <NeonGradientCard>
+      <div id="example">
+        <motion.ul
+          ref={ref}
+          style={{
+            WebkitMaskImage: maskImage,
+            maskImage: maskImage,
+          }}
+        >
+          {memes.map((meme, index) => (
+            <li key={index}>
+              <Link to={`/meme/${meme.id}`}>
+                <TiltedCard
+                  imageSrc={meme.imageUrl}
+                  // altText={`Meme ${index + 1}`}
+                  altText={``}
+                  captionText={meme.title}
+                  containerHeight="auto"
+                  containerWidth="300px"
+                  imageHeight="300px"
+                  imageWidth="300px"
+                  rotateAmplitude={12}
+                  scaleOnHover={1.2}
+                  showMobileWarning={false}
+                  showTooltip={true}
+                  displayOverlayContent={true}
+                  overlayContent={
+                    <p className="tilted-card-demo-text">{meme.title}</p>
+                  }
+                />
+              </Link>
+            </li>
+          ))}
+        </motion.ul>
+        <StyleSheet />
+      </div>
+    </NeonGradientCard>
   );
 }
 
@@ -131,7 +134,7 @@ function StyleSheet() {
       #example {
   left: 50%;
   transform: translateX(-50%);
-        width: 80vw;
+        width: 60vw;
         // max-width: 400px;
         position: relative;
         // overflow: visible; 

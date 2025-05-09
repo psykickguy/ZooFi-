@@ -30,6 +30,7 @@ import PixelCard from "./PixelCard";
 import ScrollLinked from "./ScrollLinked";
 import GlitchText from "./GlitchText";
 import FunkyLeaderboard from "./FunkyLeaderboard";
+import { NeonGradientCard } from "../../components/magicui/neon-gradient-card";
 
 const Section = ({ id, title, linkTo, children }) => (
   <section
@@ -71,8 +72,9 @@ const Home = () => {
           linkTo="/about"
         >
           <br />
-          {/* <PixelCard variant="blue"> */}
-          <div className="relative bg-gradient-to-br from-[#1a1a1a] to-black rounded-2xl p-6 md:p-10 border border-white/10 shadow-xl shadow-pink-500/10">
+          <NeonGradientCard className="w-full">
+            {/* <PixelCard variant="blue"> */}
+            {/* <div className="relative bg-gradient-to-br from-[#1a1a1a] to-black rounded-2xl p-6 md:p-10 border border-white/10 shadow-xl shadow-pink-500/10"> */}
             <p className="text-xl md:text-2xl leading-relaxed text-white font-medium tracking-wide animate-fade-in-up">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 font-bold">
                 ZooFi
@@ -85,7 +87,8 @@ const Home = () => {
             <div className="absolute -top-4 -right-4 bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md animate-pulse">
               Meme On 🚀
             </div>
-          </div>
+            {/* </div> */}
+          </NeonGradientCard>
           {/* </PixelCard> */}
         </Section>
       </FadeContent>
@@ -99,13 +102,15 @@ const Home = () => {
         textClassName="space-y-4"
       >
         <Section>
-          <HeroVideoDialog
-            className="block"
-            animationStyle="from-center"
-            videoSrc="https://www.example.com/dummy-video"
-            thumbnailSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp91mofXYaK8RLg8wYKiFzIhiRNuiHabvtjg&s"
-            thumbnailAlt="Dummy Video Thumbnail"
-          />
+          <NeonGradientCard className="w-full">
+            <HeroVideoDialog
+              className="block"
+              animationStyle="from-center"
+              videoSrc="https://www.example.com/dummy-video"
+              thumbnailSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp91mofXYaK8RLg8wYKiFzIhiRNuiHabvtjg&s"
+              thumbnailAlt="Dummy Video Thumbnail"
+            />
+          </NeonGradientCard>
         </Section>
       </ScrollReveal>
       {/* <ScrollReveal
@@ -137,7 +142,7 @@ const Home = () => {
               <GlitchText
                 speed={1}
                 enableShadows={true}
-                enableOnHover={true}
+                enableOnHover={false}
                 className="custom-class"
               >
                 Trending Memes 🔥
@@ -147,7 +152,9 @@ const Home = () => {
           linkTo="/explore"
         >
           <br />
+
           <ScrollLinked />
+
           {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 1</div>
           <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 2</div>
@@ -156,76 +163,18 @@ const Home = () => {
         </Section>
       </ScrollReveal>
 
-      <Section>
-        {/* Pass Sample Data to FunkyLeaderboard */}
-        <FunkyLeaderboard
-        // topMemes={[
-        //   { _id: "1", title: "Meme A", popularityScore: 95 },
-        //   { _id: "2", title: "Meme B", popularityScore: 88 },
-        //   { _id: "3", title: "Meme C", popularityScore: 70 },
-        // ]}
-        // topUsers={[
-        //   { _id: "u1", userId: { username: "UserOne" }, score: 100 },
-        //   { _id: "u2", userId: { username: "UserTwo" }, score: 90 },
-        //   { _id: "u3", userId: { username: "UserThree" }, score: 80 },
-        // ]}
-        />
-      </Section>
-
-      {/* 3. Leaderboard */}
-      <Section id="leaderboard" title="Leaderboard 🏆" linkTo="/leaderboard">
-        <div className="flex flex-col md:flex-row justify-center items-start gap-12">
-          {/* Top 3 Memes */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-xl font-semibold mb-4">Top 3 Memes 😂</h3>
-            <div className="flex justify-center items-end gap-8">
-              <div className="flex flex-col items-center">
-                <div className="bg-yellow-400 w-16 h-32 rounded-t-full shadow-md">
-                  🥇
-                </div>
-                <p className="mt-2 font-bold">1st</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-300 w-16 h-24 rounded-t-full shadow-md">
-                  🥈
-                </div>
-                <p className="mt-2 font-bold">2nd</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-orange-300 w-16 h-20 rounded-t-full shadow-md">
-                  🥉
-                </div>
-                <p className="mt-2 font-bold">3rd</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Top 3 Users */}
-          {/* <div className="flex flex-col items-center">
-            <h3 className="text-xl font-semibold mb-4">Top 3 Users 👤</h3>
-            <div className="flex justify-center items-end gap-8">
-              <div className="flex flex-col items-center">
-                <div className="bg-yellow-400 w-16 h-32 rounded-t-full shadow-md">
-                  🥇
-                </div>
-                <p className="mt-2 font-bold">1st</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-300 w-16 h-24 rounded-t-full shadow-md">
-                  🥈
-                </div>
-                <p className="mt-2 font-bold">2nd</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-orange-300 w-16 h-20 rounded-t-full shadow-md">
-                  🥉
-                </div>
-                <p className="mt-2 font-bold">3rd</p>
-              </div>
-            </div>
-          </div> */}
-        </div>
-      </Section>
+      <ScrollReveal
+        baseOpacity={0}
+        enableBlur={true}
+        baseRotation={5}
+        blurStrength={10}
+        containerClassName="my-20"
+        textClassName="space-y-4"
+      >
+        <Section>
+          <FunkyLeaderboard />
+        </Section>
+      </ScrollReveal>
 
       {/* 4. My Memes & Mint */}
       <Section id="my-memes" title="My Memes 🎨" linkTo="/my-memes">

@@ -1,100 +1,107 @@
-// import React from "react";
 import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import GlitchText from "./GlitchText";
+import { NeonGradientCard } from "../../components/magicui/neon-gradient-card";
+import { Link } from "react-router-dom";
 
 function FunkyLeaderboard() {
   const [topMemes, setTopMemes] = useState([]);
   const [topUsers, setTopUsers] = useState([]);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true });
 
-  // Slice and sort for fallback (in case not already sorted)
-  const top3Memes = topMemes
-    .slice(0, 3)
-    .sort((a, b) => b.popularityScore - a.popularityScore);
-  const top3Users = topUsers.slice(0, 3).sort((a, b) => b.score - a.score);
+  const barHeights = [190, 250, 130]; // Order: 2nd, 1st, 3rd
+  const medals = ["🥈", "🥇", "🥉"];
+  const memeColors = ["bg-yellow-400", "bg-blue-500", "bg-red-500"];
+  const userColors = ["bg-purple-400", "bg-green-500", "bg-pink-500"];
+  const positions = ["2nd", "1st", "3rd"];
 
-  // Fetch trending memes on component mount
   useEffect(() => {
     const fetchLeaderboardData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/memes/leaderboard");
-        const data = await response.json();
-
-        // Fetch only top 3 memes and users directly from the API
-        setTopMemes(data.topMemes.slice(0, 3)); // Slice top 3 memes
-        setTopUsers(data.topUsers.slice(0, 3)); // Slice top 3 users
-
-        console.log("Fetched memes:", data); // Debugging line
-      } catch (error) {
-        console.error("Error fetching trending memes:", error);
+        const res = await fetch("http://localhost:8080/memes/leaderboard");
+        const data = await res.json();
+        setTopMemes(data.topMemes.slice(0, 3));
+        setTopUsers(data.topUsers.slice(0, 3));
+      } catch (err) {
+        console.error("Leaderboard fetch error:", err);
       }
     };
-
     fetchLeaderboardData();
   }, []);
 
-  const positions = ["2nd", "1st", "3rd"];
-  const barHeights = ["h-24", "h-36", "h-20"]; // Medium, Tall, Small
-  const medals = ["🥈", "🥇", "🥉"];
+  const renderBar = (item, index, type = "meme") => {
+    const height = barHeights[index];
+    const bgColor = type === "meme" ? memeColors[index] : userColors[index];
+    const label =
+      type === "meme"
+        ? item.title
+        : item.userId?.username || item.username || "Anon";
+
+    const content = (
+      <div className="flex flex-col items-center w-[80px] cursor-pointer">
+        <motion.div
+          initial={{ height: 0 }}
+          animate={{ height: isInView ? height : 0 }}
+          transition={{ duration: 0.8, delay: index * 0.2 }}
+          className={`w-full ${bgColor} rounded-t-xl shadow-lg flex items-center justify-center text-3xl overflow-hidden`}
+          whileHover={{ scaleX: 1.3, originY: 1 }}
+        >
+          {medals[index]}
+        </motion.div>
+        <p className="mt-2 text-sm font-semibold">{positions[index]}</p>
+        <p className="text-xs italic text-center truncate max-w-[80px]">
+          {label}
+        </p>
+      </div>
+    );
+
+    return type === "meme" ? (
+      <Link key={item._id} to={`/meme/${item._id}`} className="text-white">
+        {content}
+      </Link>
+    ) : (
+      <div key={item._id || index}>{content}</div>
+    );
+  };
 
   return (
-    <section
-      id="leaderboard"
-      className="py-12 bg-gradient-to-br from-yellow-100 via-pink-100 to-blue-100"
-    >
-      <h2 className="text-3xl font-bold text-center mb-10">
-        🏆 Meme Battle Royale: Top 3
-      </h2>
+    <NeonGradientCard className="w-full h-full">
+      <section ref={sectionRef} className="py-12 px-4 bg-transparent">
+        <GlitchText
+          speed={1}
+          enableShadows={true}
+          enableOnHover={false}
+          className="text-3xl font-bold text-center mb-10"
+        >
+          🏆 Meme Battle Royal
+        </GlitchText>
+        <br />
+        {topMemes.length || topUsers.length ? (
+          <div className="flex flex-col md:flex-row justify-around items-center gap-8">
+            {/* Meme Leaderboard */}
+            <div className="w-full md:w-1/2 text-center">
+              <h3 className="text-2xl font-bold mb-4">Top 3 Memes 😂</h3>
+              <div className="flex justify-center items-end gap-6">
+                {topMemes.map((meme, i) => renderBar(meme, i, "meme"))}
+              </div>
+            </div>
 
-      {/* Conditional Rendering for Loading */}
-      {topMemes.length || topUsers.length ? (
-        <div className="flex flex-col md:flex-row justify-around items-center gap-10 px-4 md:px-12">
-          {/* Memes Graph */}
-          <div className="w-full md:w-1/2 text-center">
-            <h3 className="text-2xl font-bold mb-4">Top 3 Memes 😂</h3>
-            <div className="flex justify-center items-end gap-8">
-              {top3Memes.map((meme, index) => (
-                <div key={meme._id} className="flex flex-col items-center">
-                  <div
-                    className={`w-20 ${barHeights[index]} bg-pink-400 rounded-t-xl shadow-lg flex items-center justify-center text-3xl`}
-                  >
-                    {medals[index]}
-                  </div>
-                  <p className="mt-2 text-sm font-semibold">
-                    {positions[index]}
-                  </p>
-                  <p className="text-xs italic max-w-[5rem] truncate">
-                    {meme.title}
-                  </p>
-                </div>
-              ))}
+            {/* User Leaderboard */}
+            <div className="w-full md:w-1/2 text-center">
+              <h3 className="text-2xl font-bold mb-4">Top 3 Users 👤</h3>
+              <div className="flex justify-center items-end gap-6">
+                {topUsers.map((user, i) => renderBar(user, i, "user"))}
+              </div>
             </div>
           </div>
-
-          {/* Users Graph */}
-          <div className="w-full md:w-1/2 text-center">
-            <h3 className="text-2xl font-bold mb-4">Top 3 Users 👤</h3>
-            <div className="flex justify-center items-end gap-8">
-              {top3Users.map((user, index) => (
-                <div key={user._id} className="flex flex-col items-center">
-                  <div
-                    className={`w-20 ${barHeights[index]} bg-purple-400 rounded-t-xl shadow-lg flex items-center justify-center text-3xl`}
-                  >
-                    {medals[index]}
-                  </div>
-                  <p className="mt-2 text-sm font-semibold">
-                    {positions[index]}
-                  </p>
-                  <p className="text-xs italic max-w-[5rem] truncate">
-                    {user.userId?.username || "Anon"}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <p className="text-white text-center">Loading leaderboard...</p>
-      )}
-    </section>
+        ) : (
+          <p className="text-white text-center text-sm">
+            Loading leaderboard...
+          </p>
+        )}
+      </section>
+    </NeonGradientCard>
   );
 }
 
