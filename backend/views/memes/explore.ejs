@@ -70,7 +70,7 @@
     <div class="meme-grid">
       <% memes.forEach(meme => { %>
       <div class="meme-card" href="/memes/<%= meme._id %>">
-        <img src="<%= meme.imageUrl %>" alt="<%= meme.title %>" />
+        <img src="<%= meme.imageUrl.url %>" alt="<%= meme.title %>" />
         <div class="meme-info">
           <h3><%= meme.title %></h3>
           <p><%= meme.description %></p>

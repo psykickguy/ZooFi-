@@ -15,7 +15,11 @@
     <div class="meme-grid">
       <% memes.forEach(meme => { %>
       <div class="meme-card">
-        <img src="<%= meme.imageUrl %>" alt="<%= meme.title %>" width="200" />
+        <img
+          src="<%= meme.imageUrl.url %>"
+          alt="<%= meme.title %>"
+          width="200"
+        />
         <h3><%= meme.title %></h3>
         <p><%= meme.description %></p>
         <p><strong>Category:</strong> <%= meme.category %></p>

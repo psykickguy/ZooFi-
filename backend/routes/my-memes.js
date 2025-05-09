@@ -5,6 +5,9 @@ const Meme = require("../models/memes.js");
 // const MintHistory = require("../models/mintHistory.js");
 const { isLoggedIn } = require("../middleware.js");
 // const Leaderboard = require("../models/LeaderboardEntry.js");
+const multer = require("multer");
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
 
 //Mint Route
 router.get("/mint", (req, res) => {
@@ -12,14 +15,16 @@ router.get("/mint", (req, res) => {
 });
 
 //Create Route
-router.post("/", isLoggedIn, async (req, res) => {
+router.post("/", isLoggedIn, upload.single("imageUrl"), async (req, res) => {
   try {
-    const { title, description, imageUrl, category, tags } = req.body;
+    const { title, description, category, tags } = req.body;
+
+    // const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     const newMeme = new Meme({
       title,
       description,
-      imageUrl,
+      // imageUrl,
       category,
       tags: tags.split(",").map((tag) => tag.trim()),
       creatorId: req.user._id, // Assuming you have the user ID in req.params._id
@@ -29,7 +34,15 @@ router.post("/", isLoggedIn, async (req, res) => {
       mintedAt: new Date(),
     });
 
+    if (req.file) {
+      newMeme.imageUrl = {
+        url: req.file.path,
+        filename: req.file.filename,
+      };
+    }
+
     await newMeme.save();
+    console.log("Meme created:", newMeme);
     res.redirect("/my-memes"); // Redirect to the user's memes page after minting
   } catch (err) {
     console.error("Minting error:", err);

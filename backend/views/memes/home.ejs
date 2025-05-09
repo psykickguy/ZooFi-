@@ -49,7 +49,7 @@
       <% trendingMemes.forEach(meme => { %>
       <div class="meme-card">
         <a href="/memes/<%= meme._id %>">
-          <img src="<%= meme.imageUrl %>" alt="<%= meme.title %>" />
+          <img src="<%= meme.imageUrl.url %>" alt="<%= meme.title %>" />
           <h3><%= meme.title %></h3>
         </a>
         <p><%= meme.category %> | <%= meme.memeLevel %></p>

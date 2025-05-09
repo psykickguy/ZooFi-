@@ -1,4 +1,9 @@
-require("dotenv").config();
+const path = require("path");
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "../.env" });
+}
+
 const snoowrap = require("snoowrap");
 const mongoose = require("mongoose");
 const Meme = require("../models/memes.js"); // adjust if needed
@@ -58,7 +63,10 @@ async function fetchRedditMemes() {
 
           const meme = new Meme({
             title: post.title,
-            imageUrl: post.url,
+            imageUrl: {
+              url: post.url,
+              filename: path.basename(post.url), // gets the filename from the URL
+            },
             description: `Fetched from Reddit by ${post.author.name}`,
             creatorId: "000000000000000000000000", // system user ObjectId
             memeLevel: rarity,

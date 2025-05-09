@@ -8,8 +8,10 @@ const memeSchema = new Schema({
     required: true,
   },
   imageUrl: {
-    type: String,
-    required: true,
+    // type: String,
+    // required: true,
+    url: String,
+    filename: String,
   },
   description: String,
   creatorId: {
