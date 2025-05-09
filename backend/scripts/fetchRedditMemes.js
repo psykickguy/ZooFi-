@@ -11,6 +11,7 @@ const snoowrap = require("snoowrap");
 const mongoose = require("mongoose");
 const Meme = require("../models/memes.js"); // adjust if needed
 const User = require("../models/users.js"); // adjust path if needed
+const Leaderboard = require("../models/LeaderboardEntry.js"); // adjust if needed
 const { cloudinary } = require("../cloudConfig.js"); // cloudinary config
 
 // Connect to MongoDB
@@ -136,6 +137,16 @@ async function fetchRedditMemes() {
         });
 
         await meme.save();
+
+        // Update leaderboard entry for the creator
+        await Leaderboard.findOneAndUpdate(
+          { userId: meme.creatorId },
+          {
+            $inc: { score: meme.popularityScore || 0, totalMints: 1 },
+          },
+          { upsert: true, new: true }
+        );
+
         console.log(
           "Saved meme:",
           meme.title,
