@@ -29,6 +29,7 @@ import FallingText from "./FallingText";
 import PixelCard from "./PixelCard";
 import ScrollLinked from "./ScrollLinked";
 import GlitchText from "./GlitchText";
+import FunkyLeaderboard from "./FunkyLeaderboard";
 
 const Section = ({ id, title, linkTo, children }) => (
   <section
@@ -154,6 +155,22 @@ const Home = () => {
         </div> */}
         </Section>
       </ScrollReveal>
+
+      <Section>
+        {/* Pass Sample Data to FunkyLeaderboard */}
+        <FunkyLeaderboard
+        // topMemes={[
+        //   { _id: "1", title: "Meme A", popularityScore: 95 },
+        //   { _id: "2", title: "Meme B", popularityScore: 88 },
+        //   { _id: "3", title: "Meme C", popularityScore: 70 },
+        // ]}
+        // topUsers={[
+        //   { _id: "u1", userId: { username: "UserOne" }, score: 100 },
+        //   { _id: "u2", userId: { username: "UserTwo" }, score: 90 },
+        //   { _id: "u3", userId: { username: "UserThree" }, score: 80 },
+        // ]}
+        />
+      </Section>
 
       {/* 3. Leaderboard */}
       <Section id="leaderboard" title="Leaderboard 🏆" linkTo="/leaderboard">

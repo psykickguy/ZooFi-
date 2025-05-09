@@ -99,14 +99,18 @@ export default function Background() {
       try {
         const response = await fetch("http://localhost:8080/memes");
         const data = await response.json();
-        const topMemes = data
-          .slice(0, 300)
-          .map(
-            (meme) =>
-              `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
-                meme.imageUrl
-              )}`
-          );
+
+        const topMemes = data.slice(0, 300).map((meme) => {
+          const rawUrl =
+            typeof meme.imageUrl === "string"
+              ? meme.imageUrl
+              : meme.imageUrl?.url || "";
+
+          return `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
+            rawUrl
+          )}`;
+        });
+
         setImages(topMemes);
       } catch (error) {
         console.error("Error fetching trending memes:", error);

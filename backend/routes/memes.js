@@ -22,6 +22,10 @@ router.get("/", async (req, res) => {
 
 router.get("/api/image-proxy", async (req, res) => {
   const imageUrl = req.query.url;
+  if (!imageUrl || !/^https?:\/\//i.test(imageUrl)) {
+    console.error("Invalid or missing imageUrl:", imageUrl);
+    return res.status(400).send("Invalid or missing URL");
+  }
   try {
     const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
     res.set("Content-Type", response.headers["content-type"]);
@@ -61,13 +65,16 @@ router.get("/explore", async (req, res) => {
 router.get("/leaderboard", async (req, res) => {
   try {
     // Top memes by popularityScore
-    const topMemes = await Meme.find().sort({ popularityScore: -1 }).limit(10);
+    const topMemes = await Meme.find()
+      .sort({ popularityScore: -1 })
+      .limit(10)
+      .populate("creatorId", "username");
 
     // Top users by score
     const topUsers = await Leaderboard.find()
       .sort({ score: -1 })
       .limit(10)
-      .populate("userId");
+      .populate("userId", "username");
 
     res.json({ topMemes, topUsers });
     // res.render("memes/leaderboard.ejs", { topMemes, topUsers });

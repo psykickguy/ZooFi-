@@ -26,13 +26,19 @@ export default function ScrollLinked() {
 
         console.log("Fetched memes:", data); // Debugging line
 
-        const topMemes = data.slice(0, 300).map((meme) => ({
-          imageUrl: `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
-            meme.imageUrl
-          )}`,
-          title: meme.title,
-          id: meme._id, // Assuming the meme has a title field
-        }));
+        const topMemes = data.slice(0, 300).map((meme) => {
+          const rawUrl =
+            typeof meme.imageUrl === "string"
+              ? meme.imageUrl
+              : meme.imageUrl?.url || "";
+          return {
+            imageUrl: `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
+              rawUrl
+            )}`,
+            title: meme.title,
+            id: meme._id,
+          };
+        });
 
         setMemes(topMemes);
       } catch (error) {
@@ -57,7 +63,8 @@ export default function ScrollLinked() {
             <Link to={`/meme/${meme.id}`}>
               <TiltedCard
                 imageSrc={meme.imageUrl}
-                altText={`Meme ${index + 1}`}
+                // altText={`Meme ${index + 1}`}
+                altText={``}
                 captionText={meme.title}
                 containerHeight="auto"
                 containerWidth="300px"
