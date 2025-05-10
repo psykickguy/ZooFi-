@@ -59,6 +59,9 @@ const Explore = () => {
     try {
       const query = new URLSearchParams(filters).toString();
       const res = await api.get(`/memes/explore?${query}`);
+
+      console.log("Fetched memes from API:", res.data); // ✅ Debug line
+
       setMemes(res.data.memes || []);
     } catch (err) {
       console.error("Failed to load memes", err);
@@ -234,10 +237,36 @@ const Explore = () => {
           //   {memes.map((meme) => (
           //     <MemeCard key={meme._id} meme={meme} />
           //   ))}
+          // <Masonry
+          //   data={memes.map((meme) => ({
+          //     id: meme._id,
+          //     height: 400,
+          //     content: (
+          //       <Link
+          //         to={`/meme/${meme._id}`}
+          //         key={meme._id}
+          //         style={{ textDecoration: "none" }}
+          //       >
+          //         <img
+          //           src={meme.imageUrl.url}
+          //           alt={meme.title}
+          //           style={{
+          //             width: "100%",
+          //             height: "100%",
+          //             objectFit: "cover",
+          //             borderRadius: "12px",
+          //             cursor: "pointer",
+          //           }}
+          //         />
+          //       </Link>
+          //     ),
+          //   }))}
+          // />
           <Masonry
             data={memes.map((meme) => ({
               id: meme._id,
               height: 400,
+              image: meme.imageUrl?.url || "", // <-- Ensures image key is set
               content: (
                 <Link
                   to={`/meme/${meme._id}`}
@@ -245,8 +274,8 @@ const Explore = () => {
                   style={{ textDecoration: "none" }}
                 >
                   <img
-                    src={meme.imageUrl.url}
-                    alt={meme.title}
+                    src={meme.imageUrl?.url || "/fallback.jpg"} // Use fallback if broken
+                    alt={meme.title || "meme"}
                     style={{
                       width: "100%",
                       height: "100%",

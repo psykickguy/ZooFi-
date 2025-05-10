@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Explore from "./pages/memes/explore.jsx";
 import about from "./pages/memes/about.jsx";
 import Home from "./pages/memes/home.jsx";
-import leaderboard from "./pages/memes/leaderboard.jsx";
+import Leaderboard from "./pages/memes/leaderboard.jsx";
 import memeDetails from "./pages/memes/memeDetails.jsx";
 
 import mint from "./pages/my-memes/mint.jsx";
@@ -68,7 +68,7 @@ function App() {
               <Route path="/meme/:id" element={<memeDetails />} />
               <Route path="/about" element={<about />} />
               <Route path="/faq" element={<faq />} />
-              <Route path="/leaderboard" element={<leaderboard />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/profile" element={<profile />} />
               <Route path="/edit-profile" element={<editProfile />} />
               <Route path="/wallet-connect" element={<walletConnect />} />

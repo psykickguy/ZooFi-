@@ -3,7 +3,7 @@
   width: 70vw;
   /* margin: 0 auto; */
   margin-top: 5rem;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   overflow-y: auto;
   position: relative;
   z-index: 998;

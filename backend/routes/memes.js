@@ -78,6 +78,7 @@ router.get("/leaderboard", async (req, res) => {
       .populate("userId", "username");
 
     res.json({ topMemes, topUsers });
+    // console.log("Returning:", { topMemes, topUsers });
     // res.render("memes/leaderboard.ejs", { topMemes, topUsers });
   } catch (err) {
     console.error("Leaderboard Error:", err);
