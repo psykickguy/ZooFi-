@@ -1,16 +1,19 @@
+// components/MemeCard.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { Card } from "antd";
+import "antd"; // Make sure it's included globally if not
+
+const { Meta } = Card;
 
 const MemeCard = ({ meme }) => {
   return (
-    <div className="meme-card">
-      <img src={meme.imageUrl} alt={meme.title} />
-      <h4>{meme.title}</h4>
-      <p>
-        🔥 {meme.popularityScore} • {meme.category}
-      </p>
-      <Link to={`/meme/${meme._id}`}>View</Link>
-    </div>
+    <Card
+      hoverable
+      style={{ width: 240, margin: "1rem" }}
+      cover={<img alt={meme.title} src={meme.imageUrl.url} />}
+    >
+      <Meta title={meme.title} description={meme.tags.join(", ")} />
+    </Card>
   );
 };
 

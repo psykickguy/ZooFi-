@@ -66,7 +66,7 @@ function FunkyLeaderboard() {
   };
 
   return (
-    <NeonGradientCard className="w-full h-full">
+    <NeonGradientCard className="w-full h-160">
       <section ref={sectionRef} className="py-12 px-4 bg-transparent">
         <GlitchText
           speed={1}

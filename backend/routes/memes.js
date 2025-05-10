@@ -38,6 +38,8 @@ router.get("/api/image-proxy", async (req, res) => {
 
 //Explore Route
 router.get("/explore", async (req, res) => {
+  console.log("Explore endpoint hit");
+
   const { category, memeLevel, tags, sortBy } = req.query;
 
   // Build dynamic filter
@@ -53,8 +55,7 @@ router.get("/explore", async (req, res) => {
 
   try {
     const memes = await Meme.find(filter).sort(sortOption).limit(50);
-    const memeUrls = memes.map((meme) => meme.imageUrl); // or meme.img if that's your field
-    res.json({ memeUrls });
+    res.json({ memes });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading memes.");
