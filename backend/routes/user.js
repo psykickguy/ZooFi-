@@ -4,6 +4,15 @@ const User = require("../models/users.js");
 const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 
+// ----- Auth Status ----- //
+router.get("/status", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.status(200).json({ isLoggedIn: true, user: req.user });
+  } else {
+    res.status(200).json({ isLoggedIn: false });
+  }
+});
+
 // ----- Signup ----- //
 router.post("/signup", async (req, res) => {
   const { username, email, walletAddress, password } = req.body;

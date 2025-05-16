@@ -35,6 +35,8 @@ export default function Signup() {
     e.preventDefault();
     try {
       await api.post("/api/signup", form);
+      localStorage.setItem("isLoggedIn", "true");
+      window.dispatchEvent(new Event("loginStatusChanged"));
       nav("/explore");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");

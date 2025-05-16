@@ -31,6 +31,8 @@ export default function Login() {
     e.preventDefault();
     try {
       await api.post("/api/login", form);
+      localStorage.setItem("isLoggedIn", "true");
+      window.dispatchEvent(new Event("loginStatusChanged"));
       nav("/explore");
     } catch (err) {
       setError("Invalid credentials");

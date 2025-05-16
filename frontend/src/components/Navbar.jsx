@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import Dock from "./Dock"; // your dock component
 import {
   FaCompass,
@@ -17,11 +18,29 @@ import {
 import "./Dock.css"; // your styles
 import FuzzyText from "./FuzzyText";
 import { useTheme } from "./theme-provider";
-
-const isLoggedIn = false; // Replace with actual auth logic
+import { useAuth } from "../pages/users/AuthContext"; // ✅ use correct path
+import api from "../services/api"; // ✅ use your axios instance
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("isLoggedIn")
+  );
+
+  useEffect(() => {
+    const updateLoginState = () => {
+      setIsLoggedIn(!!localStorage.getItem("isLoggedIn"));
+    };
+
+    window.addEventListener("loginStatusChanged", updateLoginState);
+
+    return () => {
+      window.removeEventListener("loginStatusChanged", updateLoginState);
+    };
+  }, []);
+
+  // const { isLoggedIn, setIsLoggedIn } = useAuth(); // ✅ use context instead of localStorage
 
   const isDark =
     theme === "dark" ||
@@ -72,6 +91,16 @@ const Navbar = () => {
             label: "Profile",
             onClick: () => (window.location.href = "/profile"),
           },
+          {
+            icon: <FaSignInAlt size={24} color="#fff" />,
+            label: "Logout",
+            onClick: () => {
+              localStorage.removeItem("isLoggedIn");
+              window.dispatchEvent(new Event("loginStatusChanged"));
+              setIsLoggedIn(false);
+              // window.location.href = "/";
+            },
+          },
         ]
       : [
           {
@@ -85,6 +114,7 @@ const Navbar = () => {
             onClick: () => (window.location.href = "/login"),
           },
         ]),
+
     {
       icon: <FaWallet size={24} color="#fff" />,
       label: "Connect Wallet",

@@ -25,11 +25,14 @@ import Particles from "./components/Particles.jsx";
 import { ThemeProvider } from "./components/theme-provider.jsx";
 import { SmoothCursor } from "./components/ui/smooth-cursor";
 
+import { AuthProvider } from "./pages/users/AuthContext.jsx"; // ✅ import AuthProvider
+
 import "./App.css";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      {/* <AuthProvider> */}
       <Router>
         <div className="app-container">
           {/* <SmoothCursor /> */}
@@ -65,32 +68,7 @@ function App() {
               <Route path="/login" element={<login />} />
               <Route path="/signup" element={<signup />} />
               <Route path="/my-memes" element={<myMemes />} />
-              <Route
-                path="/meme/:id"
-                element={
-                  <MemeDetails
-                  // meme={{
-                  //   title: "Sassy Cat",
-                  //   imageUrl: { url: "https://example.com/cat-meme.jpg" },
-                  //   description: "A cat judging your code.",
-                  //   category: "Animals",
-                  //   memeLevel: "Legendary",
-                  //   popularityScore: 9000,
-                  //   creatorId: { username: "memelord69" },
-                  //   tags: ["funny", "cat", "code"],
-                  //   mintedAt: new Date(),
-                  // }}
-                  // mintHistory={[
-                  //   {
-                  //     userId: { username: "cooluser1" },
-                  //     mintedAt: new Date(),
-                  //     network: "Sui",
-                  //   },
-                  // ]}
-                  // listing={{ price: 15 }}
-                  />
-                }
-              />
+              <Route path="/meme/:id" element={<MemeDetails />} />
               <Route path="/about" element={<about />} />
               <Route path="/faq" element={<faq />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
@@ -101,6 +79,7 @@ function App() {
           </div>
         </div>
       </Router>
+      {/* </AuthProvider> */}
     </ThemeProvider>
   );
 }
