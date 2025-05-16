@@ -6,7 +6,7 @@ import Home from "./pages/memes/home.jsx";
 import Leaderboard from "./pages/memes/leaderboard.jsx";
 import MemeDetails from "./pages/memes/MemeDetails.jsx";
 
-import mint from "./pages/my-memes/mint.jsx";
+import Mint from "./pages/my-memes/mint.jsx";
 import myMemes from "./pages/my-memes/myMemes.jsx";
 
 import profile from "./pages/profile/profile.jsx";
@@ -37,7 +37,16 @@ function App() {
         <div className="app-container">
           {/* <SmoothCursor /> */}
           <Background />
-
+          <Particles
+            particleColors={["#ffffff", "#ffffff"]}
+            particleCount={500}
+            particleSpread={10}
+            speed={0.5}
+            particleBaseSize={150}
+            moveParticlesOnHover={true}
+            alphaParticles={false}
+            disableRotation={false}
+          />
           <div
             style={{
               position: "relative",
@@ -46,16 +55,6 @@ function App() {
               paddingRight: "1rem",
             }}
           >
-            <Particles
-              particleColors={["#ffffff", "#ffffff"]}
-              particleCount={500}
-              particleSpread={10}
-              speed={0.5}
-              particleBaseSize={150}
-              moveParticlesOnHover={true}
-              alphaParticles={false}
-              disableRotation={false}
-            />
             <SidePanel />
             <Navbar />
             <Routes>
@@ -64,7 +63,7 @@ function App() {
 
               <Route path="/" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
-              <Route path="/mint" element={<mint />} />
+              <Route path="/mint" element={<Mint />} />
               <Route path="/login" element={<login />} />
               <Route path="/signup" element={<signup />} />
               <Route path="/my-memes" element={<myMemes />} />

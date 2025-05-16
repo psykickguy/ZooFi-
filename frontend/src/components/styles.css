@@ -1,5 +1,6 @@
 body {
   --black: #000000;
+  --dark-gray: #1f2937;
   --ash-black: #222;
   --white: #fafafa;
   --sky: #00ccff;
@@ -12,6 +13,7 @@ body {
   --orange: #fd7702;
   --yellow: #ffbb00;
 
+  /* --background: linear-gradient(to bottom right, var(--ash-black), var(--dark-gray)); */
   --background: var(--ash-black);
   --accent: var(--black);
 

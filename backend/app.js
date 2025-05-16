@@ -55,7 +55,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false, // true if using HTTPS
-      sameSite: "none", // or "none" if frontend and backend are on different origins
+      sameSite: "lax", // or "none" if frontend and backend are on different origins
     },
   })
 );

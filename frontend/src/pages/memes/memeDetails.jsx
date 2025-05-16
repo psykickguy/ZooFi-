@@ -52,8 +52,9 @@ function MemeDetails() {
           src={meme?.imageUrl?.url}
           alt="Meme"
           style={{
-            // width: "50%",
-            height: "70vh",
+            width: "30vw",
+            height: "auto",
+            // height: "60vh",
             borderRadius: "15px",
             marginBottom: "20px",
             zIndex: 998,

@@ -43,7 +43,8 @@ router.post("/", isLoggedIn, upload.single("imageUrl"), async (req, res) => {
 
     await newMeme.save();
     console.log("Meme created:", newMeme);
-    res.redirect("/my-memes"); // Redirect to the user's memes page after minting
+    res.status(200).json({ message: "Meme minted successfully" });
+    // res.redirect("/my-memes"); // Redirect to the user's memes page after minting
   } catch (err) {
     console.error("Minting error:", err);
     res.status(500).send("Something went wrong while minting.");

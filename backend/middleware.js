@@ -1,12 +1,18 @@
 module.exports.isLoggedIn = (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    if (req.originalUrl.startsWith("/api/")) {
-      return res.status(401).json({ message: "Not authenticated" });
-    }
-    req.session.redirectUrl = req.originalUrl;
-    return res.redirect("/login");
+  if (req.isAuthenticated()) return next();
+
+  const expectsJSON =
+    req.headers.accept?.includes("application/json") ||
+    req.xhr ||
+    req.headers["content-type"]?.includes("application/json");
+
+  if (expectsJSON) {
+    return res.status(401).json({ message: "Unauthorized. Please log in." });
   }
-  next();
+
+  // Store intended URL for redirection after login
+  req.session.redirectUrl = req.originalUrl;
+  return res.redirect("/login");
 };
 
 module.exports.saveRedirectUrl = (req, res, next) => {
