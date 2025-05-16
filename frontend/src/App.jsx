@@ -4,7 +4,7 @@ import Explore from "./pages/memes/explore.jsx";
 import about from "./pages/memes/about.jsx";
 import Home from "./pages/memes/home.jsx";
 import Leaderboard from "./pages/memes/leaderboard.jsx";
-import memeDetails from "./pages/memes/memeDetails.jsx";
+import MemeDetails from "./pages/memes/MemeDetails.jsx";
 
 import mint from "./pages/my-memes/mint.jsx";
 import myMemes from "./pages/my-memes/myMemes.jsx";
@@ -65,7 +65,32 @@ function App() {
               <Route path="/login" element={<login />} />
               <Route path="/signup" element={<signup />} />
               <Route path="/my-memes" element={<myMemes />} />
-              <Route path="/meme/:id" element={<memeDetails />} />
+              <Route
+                path="/meme/:id"
+                element={
+                  <MemeDetails
+                  // meme={{
+                  //   title: "Sassy Cat",
+                  //   imageUrl: { url: "https://example.com/cat-meme.jpg" },
+                  //   description: "A cat judging your code.",
+                  //   category: "Animals",
+                  //   memeLevel: "Legendary",
+                  //   popularityScore: 9000,
+                  //   creatorId: { username: "memelord69" },
+                  //   tags: ["funny", "cat", "code"],
+                  //   mintedAt: new Date(),
+                  // }}
+                  // mintHistory={[
+                  //   {
+                  //     userId: { username: "cooluser1" },
+                  //     mintedAt: new Date(),
+                  //     network: "Sui",
+                  //   },
+                  // ]}
+                  // listing={{ price: 15 }}
+                  />
+                }
+              />
               <Route path="/about" element={<about />} />
               <Route path="/faq" element={<faq />} />
               <Route path="/leaderboard" element={<Leaderboard />} />

@@ -119,12 +119,14 @@ router.get("/:id", async (req, res) => {
       .populate("userId", "username")
       .sort({ mintedAt: -1 });
 
-    res.render("memes/memeDetails.ejs", {
-      meme,
-      creator,
-      mintHistory,
-      listing: null,
-    });
+    res.json({ meme, creator, mintHistory, listing: null });
+
+    // res.render("memes/memeDetails.ejs", {
+    //   meme,
+    //   creator,
+    //   mintHistory,
+    //   listing: null,
+    // });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading meme details.");

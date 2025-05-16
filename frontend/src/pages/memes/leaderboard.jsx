@@ -15,8 +15,8 @@ function Leaderboard() {
       try {
         const res = await fetch("http://localhost:8080/memes/leaderboard");
         const data = await res.json();
-        setTopMemes(data.topMemes.slice(0, 10));
-        setTopUsers(data.topUsers.slice(0, 10));
+        setTopMemes(data.topMemes.slice(0, 5));
+        setTopUsers(data.topUsers.slice(0, 5));
       } catch (err) {
         console.error("Failed to fetch leaderboard:", err);
       }
