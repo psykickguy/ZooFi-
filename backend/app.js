@@ -41,6 +41,7 @@ app.use(
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // For JSON requests (React/Axios)
 
 app.get("/", (req, res) => {
   res.send("Hi, I am root");
@@ -54,7 +55,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false, // true if using HTTPS
-      sameSite: "lax", // or "none" if frontend and backend are on different origins
+      sameSite: "none", // or "none" if frontend and backend are on different origins
     },
   })
 );
