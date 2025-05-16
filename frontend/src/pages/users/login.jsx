@@ -40,30 +40,6 @@ export default function Login() {
   const { theme } = useTheme();
 
   return (
-    // <MagicCard>
-    //   <div className="auth-container">
-    //     <h2>Log In</h2>
-    //     {error && <p className="error">{error}</p>}
-    //     <form onSubmit={handleSubmit}>
-    //       <input
-    //         name="username"
-    //         value={form.username}
-    //         onChange={handleChange}
-    //         placeholder="Username"
-    //         required
-    //       />
-    //       <input
-    //         name="password"
-    //         type="password"
-    //         value={form.password}
-    //         onChange={handleChange}
-    //         placeholder="Password"
-    //         required
-    //       />
-    //       <button type="submit">Log In</button>
-    //     </form>
-    //   </div>
-    // </MagicCard>
     <Card className="auth-container p-0 max-w-sm w-full shadow-none border-none">
       <MagicCard
         gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
