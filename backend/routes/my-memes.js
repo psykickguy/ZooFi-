@@ -69,8 +69,10 @@ router.get("/", isLoggedIn, saveRedirectUrl, async (req, res) => {
     console.log("🔐 Authenticated user:", req.user.username); // or req.user.email
 
     const memes = await Meme.find({
-      $or: [{ creatorId: userId }, { mintedBy: userId }],
+      $or: [{ creatorId: userId }, { mintedBy: { $in: [req.user._id] } }],
     });
+
+    console.log("📦 Found memes:", memes);
 
     // Check if request expects JSON (coming from React via axios)
     if (req.headers.accept.includes("application/json")) {

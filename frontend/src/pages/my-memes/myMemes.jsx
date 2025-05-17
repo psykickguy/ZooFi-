@@ -9,7 +9,7 @@ function MyMemes() {
     const fetchMemes = async () => {
       try {
         const res = await axios.get("http://localhost:8080/api/my-memes", {
-          withCredentials: true,
+          withCredentials: "include",
         });
         console.log("Fetched my memes:", res.data);
         setMemes(res.data.memes || []);

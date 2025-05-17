@@ -15,6 +15,7 @@ import ScrollLinked from "./ScrollLinked";
 import GlitchText from "./GlitchText";
 import FunkyLeaderboard from "./FunkyLeaderboard";
 import { NeonGradientCard } from "../../components/magicui/neon-gradient-card";
+import MyMemesScroll from "./MyMemesScroll";
 
 const Section = ({ id, title, linkTo, children }) => (
   <section
@@ -97,18 +98,6 @@ const Home = () => {
           </NeonGradientCard>
         </Section>
       </ScrollReveal>
-      {/* <ScrollReveal
-        baseOpacity={0}
-        enableBlur={true}
-        baseRotation={5}
-        blurStrength={10}
-        containerClassName="my-20"
-        textClassName="space-y-4"
-      >
-        <Section>
-          <BentoDemo />
-        </Section>
-      </ScrollReveal> */}
 
       {/* 2. Trending Memes */}
       <ScrollReveal
@@ -129,21 +118,14 @@ const Home = () => {
                 enableOnHover={false}
                 className="custom-class"
               >
-                Trending Memes 🔥
+                Trending Memes
               </GlitchText>
             </>
           }
           linkTo="/explore"
         >
           <br />
-
           <ScrollLinked />
-
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 1</div>
-          <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 2</div>
-          <div className="bg-gray-100 p-6 rounded-lg shadow">Meme 3</div>
-        </div> */}
         </Section>
       </ScrollReveal>
 
@@ -170,6 +152,35 @@ const Home = () => {
           Mint a Meme
         </Link>
       </Section>
+
+      <ScrollReveal
+        baseOpacity={0}
+        enableBlur={true}
+        baseRotation={5}
+        blurStrength={10}
+        containerClassName="my-20"
+        textClassName="space-y-4"
+      >
+        <Section
+          id="my-memes"
+          title={
+            <>
+              <GlitchText
+                speed={1}
+                enableShadows={true}
+                enableOnHover={false}
+                className="custom-class"
+              >
+                My Memes
+              </GlitchText>
+            </>
+          }
+          linkTo="/my-memes"
+        >
+          <br />
+          <MyMemesScroll />
+        </Section>
+      </ScrollReveal>
 
       {/* 5. Login / Signup */}
       <Section id="auth" title="Join ZooFi 🚀" linkTo="/login">
