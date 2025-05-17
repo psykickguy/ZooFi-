@@ -233,35 +233,6 @@ const Explore = () => {
         ) : memes.length === 0 ? (
           <p>No memes found.</p>
         ) : (
-          // <div className="meme-grid">
-          //   {memes.map((meme) => (
-          //     <MemeCard key={meme._id} meme={meme} />
-          //   ))}
-          // <Masonry
-          //   data={memes.map((meme) => ({
-          //     id: meme._id,
-          //     height: 400,
-          //     content: (
-          //       <Link
-          //         to={`/meme/${meme._id}`}
-          //         key={meme._id}
-          //         style={{ textDecoration: "none" }}
-          //       >
-          //         <img
-          //           src={meme.imageUrl.url}
-          //           alt={meme.title}
-          //           style={{
-          //             width: "100%",
-          //             height: "100%",
-          //             objectFit: "cover",
-          //             borderRadius: "12px",
-          //             cursor: "pointer",
-          //           }}
-          //         />
-          //       </Link>
-          //     ),
-          //   }))}
-          // />
           <Masonry
             data={memes.map((meme) => ({
               id: meme._id,

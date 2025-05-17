@@ -16,6 +16,7 @@ import GlitchText from "./GlitchText";
 import FunkyLeaderboard from "./FunkyLeaderboard";
 import { NeonGradientCard } from "../../components/magicui/neon-gradient-card";
 import MyMemesScroll from "./MyMemesScroll";
+import AuthSection from "./AuthSection";
 
 const Section = ({ id, title, linkTo, children }) => (
   <section
@@ -80,7 +81,7 @@ const Home = () => {
 
       <ScrollReveal
         baseOpacity={0}
-        enableBlur={true}
+        enableBlur={false}
         baseRotation={5}
         blurStrength={10}
         containerClassName="my-20"
@@ -102,7 +103,7 @@ const Home = () => {
       {/* 2. Trending Memes */}
       <ScrollReveal
         baseOpacity={0}
-        enableBlur={true}
+        enableBlur={false}
         baseRotation={5}
         blurStrength={10}
         containerClassName="my-20"
@@ -131,7 +132,7 @@ const Home = () => {
 
       <ScrollReveal
         baseOpacity={0}
-        enableBlur={true}
+        enableBlur={false}
         baseRotation={5}
         blurStrength={10}
         containerClassName="my-20"
@@ -143,7 +144,7 @@ const Home = () => {
       </ScrollReveal>
 
       {/* 4. My Memes & Mint */}
-      <Section id="my-memes" title="My Memes 🎨" linkTo="/my-memes">
+      {/* <Section id="my-memes" title="My Memes 🎨" linkTo="/my-memes">
         <p className="mb-6">View and manage your memes here.</p>
         <Link
           to="/mint"
@@ -151,11 +152,11 @@ const Home = () => {
         >
           Mint a Meme
         </Link>
-      </Section>
+      </Section> */}
 
       <ScrollReveal
         baseOpacity={0}
-        enableBlur={true}
+        enableBlur={false}
         baseRotation={5}
         blurStrength={10}
         containerClassName="my-20"
@@ -183,7 +184,7 @@ const Home = () => {
       </ScrollReveal>
 
       {/* 5. Login / Signup */}
-      <Section id="auth" title="Join ZooFi 🚀" linkTo="/login">
+      {/* <Section id="auth" title="Join ZooFi 🚀" linkTo="/login">
         <p className="mb-6">
           Login or sign up to start minting and sharing memes.
         </p>
@@ -201,7 +202,19 @@ const Home = () => {
             Sign Up
           </Link>
         </div>
-      </Section>
+      </Section> */}
+
+      {/* <ScrollReveal
+        baseOpacity={0}
+        enableBlur={false}
+        baseRotation={5}
+        blurStrength={10}
+        containerClassName="my-20"
+        textClassName="space-y-4"
+      >
+        <AuthSection />
+      </ScrollReveal> */}
+
       {/* <CustomFooter /> */}
     </div>
   );

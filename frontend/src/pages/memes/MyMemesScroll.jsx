@@ -58,37 +58,45 @@ export default function MyMemesScroll() {
   return (
     <NeonGradientCard>
       <div id="my-meme-scroll">
-        <motion.ul
-          ref={ref}
-          style={{
-            WebkitMaskImage: maskImage,
-            maskImage: maskImage,
-          }}
-        >
-          {myMemes.map((meme, index) => (
-            <li key={index}>
-              <Link to={`/meme/${meme.id}`}>
-                <TiltedCard
-                  imageSrc={meme.imageUrl}
-                  altText={``}
-                  captionText={meme.title}
-                  containerHeight="auto"
-                  containerWidth="300px"
-                  imageHeight="300px"
-                  imageWidth="300px"
-                  rotateAmplitude={12}
-                  scaleOnHover={1.2}
-                  showMobileWarning={false}
-                  showTooltip={true}
-                  displayOverlayContent={true}
-                  overlayContent={
-                    <p className="tilted-card-demo-text">{meme.title}</p>
-                  }
-                />
-              </Link>
-            </li>
-          ))}
-        </motion.ul>
+        {myMemes.length > 0 ? (
+          <motion.ul
+            ref={ref}
+            style={{
+              WebkitMaskImage: maskImage,
+              maskImage: maskImage,
+            }}
+          >
+            {myMemes.map((meme, index) => (
+              <li key={index}>
+                <Link to={`/meme/${meme.id}`}>
+                  <TiltedCard
+                    imageSrc={meme.imageUrl}
+                    altText={``}
+                    captionText={meme.title}
+                    containerHeight="auto"
+                    containerWidth="300px"
+                    imageHeight="300px"
+                    imageWidth="300px"
+                    rotateAmplitude={12}
+                    scaleOnHover={1.2}
+                    showMobileWarning={false}
+                    showTooltip={true}
+                    displayOverlayContent={true}
+                    overlayContent={
+                      <p className="tilted-card-demo-text">{meme.title}</p>
+                    }
+                  />
+                </Link>
+              </li>
+            ))}
+          </motion.ul>
+        ) : (
+          <p className="text-center text-white/70 text-xl py-10">
+            🥲 Looks like you haven’t minted any memes yet... Get started and
+            become legendary!
+          </p>
+        )}
+
         <MyStyleSheet />
       </div>
     </NeonGradientCard>
