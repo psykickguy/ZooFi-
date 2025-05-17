@@ -76,7 +76,7 @@ app.use("/memes", memesRouter);
 app.use("/api", userRouter);
 app.use("/profile", profileRoutes);
 app.use("/", walletRoutes);
-app.use("/my-memes", myMemesRoutes);
+app.use("/api/my-memes", myMemesRoutes);
 
 app.listen(8080, () => {
   console.log("server is listening to port 8080");

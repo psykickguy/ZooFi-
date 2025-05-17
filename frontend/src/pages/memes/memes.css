@@ -67,7 +67,7 @@
 .meme-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
   /* justify-items: space-between; */
   /* align-items: flex-start; */

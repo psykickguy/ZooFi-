@@ -1,5 +1,11 @@
 module.exports.isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) return next();
+  console.log("🔍 Session ID:", req.sessionID);
+  console.log("🧠 Session data:", req.session);
+  console.log("👤 User:", req.user);
+
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return next();
+  }
 
   const expectsJSON =
     req.headers.accept?.includes("application/json") ||

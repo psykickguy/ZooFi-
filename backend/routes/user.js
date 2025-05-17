@@ -33,11 +33,25 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// ----- Login ----- //
-router.post("/login", passport.authenticate("local"), (req, res) => {
-  console.log("✅ Logged in user:", req.user);
-  res.status(200).json({ message: "Login successful", user: req.user });
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json({ message: "Login failed" });
+
+    req.login(user, (err) => {
+      if (err) return next(err);
+      console.log("✅ Logged in user:", req.user);
+      return res.status(200).json({ message: "Login successful", user });
+    });
+  })(req, res, next);
 });
+
+// ----- Login ----- //
+// router.post("/login", passport.authenticate("local"), (req, res) => {
+//   console.log("✅ Logged in user:", req.user);
+//   res.status(200).json({ message: "Login successful", user: req.user });
+//   // res.render()
+// });
 
 // ----- Logout ----- //
 router.post("/logout", (req, res, next) => {

@@ -53,11 +53,12 @@ function MemeDetails() {
           alt="Meme"
           style={{
             width: "30vw",
-            height: "auto",
+            height: "100%",
+            // alignItems: "",
             // height: "60vh",
             borderRadius: "15px",
             marginBottom: "20px",
-            zIndex: 998,
+            // zIndex: 998,
           }}
         />
         {/* </NeonGradientCard> */}

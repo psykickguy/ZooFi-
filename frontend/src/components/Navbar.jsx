@@ -86,11 +86,11 @@ const Navbar = () => {
     },
     ...(isLoggedIn
       ? [
-          {
-            icon: <FaUser size={24} color="#fff" />,
-            label: "Profile",
-            onClick: () => (window.location.href = "/profile"),
-          },
+          // {
+          //   icon: <FaUser size={24} color="#fff" />,
+          //   label: "Profile",
+          //   onClick: () => (window.location.href = "/profile"),
+          // },
           {
             icon: <FaSignInAlt size={24} color="#fff" />,
             label: "Logout",

@@ -35,7 +35,7 @@ function Mint() {
         payload.append(key, formData[key]);
       }
 
-      await axios.post("http://localhost:8080/my-memes", payload, {
+      await axios.post("http://localhost:8080/api/my-memes", payload, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -46,14 +46,14 @@ function Mint() {
 
       navigate("/my-memes");
 
-      setFormData({
-        title: "",
-        description: "",
-        category: "",
-        tags: "",
-        imageUrl: null,
-      });
-      setPreview(null);
+      // setFormData({
+      //   title: "",
+      //   description: "",
+      //   category: "",
+      //   tags: "",
+      //   imageUrl: null,
+      // });
+      // setPreview(null);
     } catch (err) {
       if (err.response?.status === 401) {
         alert("⚠️ Please log in to mint a meme.");

@@ -7,7 +7,7 @@ import Leaderboard from "./pages/memes/leaderboard.jsx";
 import MemeDetails from "./pages/memes/MemeDetails.jsx";
 
 import Mint from "./pages/my-memes/mint.jsx";
-import myMemes from "./pages/my-memes/myMemes.jsx";
+import MyMemes from "./pages/my-memes/myMemes.jsx";
 
 import profile from "./pages/profile/profile.jsx";
 import editProfile from "./pages/profile/editProfile.jsx";
@@ -66,7 +66,7 @@ function App() {
               <Route path="/mint" element={<Mint />} />
               <Route path="/login" element={<login />} />
               <Route path="/signup" element={<signup />} />
-              <Route path="/my-memes" element={<myMemes />} />
+              <Route path="/my-memes" element={<MyMemes />} />
               <Route path="/meme/:id" element={<MemeDetails />} />
               <Route path="/about" element={<about />} />
               <Route path="/faq" element={<faq />} />
