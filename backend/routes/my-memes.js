@@ -5,9 +5,16 @@ const Meme = require("../models/memes.js");
 // const MintHistory = require("../models/mintHistory.js");
 const { isLoggedIn, saveRedirectUrl } = require("../middleware.js");
 // const Leaderboard = require("../models/LeaderboardEntry.js");
+
+// const multer = require("multer");
+// const { storage } = require("../cloudConfig.js");
+// const upload = multer({ storage });
+
+// NEW: Using Pinata
 const multer = require("multer");
-const { storage } = require("../cloudConfig.js");
-const upload = multer({ storage });
+const upload = multer({ dest: "uploads/" });
+const { uploadToPinata } = require("../pinataConfig.js");
+const fs = require("fs");
 
 //Mint Route
 router.get("/mint", (req, res) => {
@@ -38,10 +45,21 @@ router.post("/", isLoggedIn, upload.single("imageUrl"), async (req, res) => {
     });
 
     if (req.file) {
+      // 🆕 Upload image to IPFS via Pinata
+      const { ipfsHash, ipfsUrl } = await uploadToPinata(req.file.path);
+
       newMeme.imageUrl = {
-        url: req.file.path,
-        filename: req.file.filename,
+        // url: req.file.path,
+        // filename: req.file.filename,
+        url: ipfsUrl,
+        filename: ipfsHash,
       };
+
+      // ✅ Clean up the temp image file
+      fs.unlink(req.file.path, (err) => {
+        if (err) console.error("❌ Failed to delete temp file:", err);
+        else console.log("🧹 Temp file deleted:", req.file.path);
+      });
     }
 
     await newMeme.save();
