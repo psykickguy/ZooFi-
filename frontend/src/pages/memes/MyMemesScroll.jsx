@@ -22,11 +22,12 @@ export default function MyMemesScroll() {
   useEffect(() => {
     const fetchMyMemes = async () => {
       try {
-        // const response = await fetch("http://localhost:8080/api/my-memes");
-        // const data = await response.json();
-        const res = await axios.get("http://localhost:8080/api/my-memes", {
-          withCredentials: "include",
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/my-memes`,
+          {
+            withCredentials: true,
+          }
+        );
         // const data = await res.json();
         const memesArray = Array.isArray(res.data)
           ? res.data
@@ -38,9 +39,9 @@ export default function MyMemesScroll() {
               ? meme.imageUrl
               : meme.imageUrl?.url || "";
           return {
-            imageUrl: `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
-              rawUrl
-            )}`,
+            imageUrl: `${
+              import.meta.env.VITE_BACKEND_URL
+            }/memes/api/image-proxy?url=${encodeURIComponent(rawUrl)}`,
             title: meme.title,
             id: meme._id,
           };

@@ -17,7 +17,9 @@ function MemeDetails() {
   useEffect(() => {
     const fetchMeme = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/memes/${id}`); // ✅ inject id
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/memes/${id}`
+        ); // ✅ inject id
         if (!res.ok) throw new Error(await res.text()); // handle non-JSON errors
         const data = await res.json();
         setMeme(data.meme);

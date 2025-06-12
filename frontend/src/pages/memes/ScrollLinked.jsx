@@ -22,7 +22,12 @@ export default function ScrollLinked() {
   useEffect(() => {
     const fetchTrendingMemes = async () => {
       try {
-        const response = await fetch("http://localhost:8080/memes");
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/memes`,
+          {
+            credentials: "include", // optional: only if you're using cookies/session
+          }
+        );
         const data = await response.json();
 
         console.log("Fetched memes:", data); // Debugging line
@@ -33,9 +38,10 @@ export default function ScrollLinked() {
               ? meme.imageUrl
               : meme.imageUrl?.url || "";
           return {
-            imageUrl: `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
-              rawUrl
-            )}`,
+            imageUrl: `${
+              import.meta.env.VITE_BACKEND_URL
+            }/memes/api/image-proxy?url=${encodeURIComponent(rawUrl)}`,
+
             title: meme.title,
             id: meme._id,
           };

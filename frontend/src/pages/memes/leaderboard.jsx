@@ -13,7 +13,9 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await fetch("http://localhost:8080/memes/leaderboard");
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/memes/leaderboard`
+        );
         const data = await res.json();
         setTopMemes(data.topMemes.slice(0, 5));
         setTopUsers(data.topUsers.slice(0, 5));

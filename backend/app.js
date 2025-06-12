@@ -17,7 +17,7 @@ const profileRoutes = require("./routes/profile.js");
 const walletRoutes = require("./routes/wallet");
 const myMemesRoutes = require("./routes/my-memes.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/zoofi";
+const MONGO_URL = process.env.MONGODB_URI;
 
 main()
   .then(() => {

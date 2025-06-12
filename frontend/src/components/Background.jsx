@@ -97,7 +97,9 @@ export default function Background() {
   useEffect(() => {
     const fetchTrendingMemes = async () => {
       try {
-        const response = await fetch("http://localhost:8080/memes");
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/memes`
+        );
         const data = await response.json();
 
         const topMemes = data.slice(0, 300).map((meme) => {
@@ -106,9 +108,9 @@ export default function Background() {
               ? meme.imageUrl
               : meme.imageUrl?.url || "";
 
-          return `http://localhost:8080/memes/api/image-proxy?url=${encodeURIComponent(
-            rawUrl
-          )}`;
+          return `${
+            import.meta.env.VITE_BACKEND_URL
+          }/memes/api/image-proxy?url=${encodeURIComponent(rawUrl)}`;
         });
 
         setImages(topMemes);

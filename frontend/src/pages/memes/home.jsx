@@ -182,40 +182,6 @@ const Home = () => {
           <MyMemesScroll />
         </Section>
       </ScrollReveal>
-
-      {/* 5. Login / Signup */}
-      {/* <Section id="auth" title="Join ZooFi 🚀" linkTo="/login">
-        <p className="mb-6">
-          Login or sign up to start minting and sharing memes.
-        </p>
-        <div className="flex justify-center gap-4">
-          <Link
-            to="/login"
-            className="bg-green-500 text-white px-5 py-2 rounded hover:bg-green-600"
-          >
-            Login
-          </Link>
-          <Link
-            to="/signup"
-            className="bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600"
-          >
-            Sign Up
-          </Link>
-        </div>
-      </Section> */}
-
-      {/* <ScrollReveal
-        baseOpacity={0}
-        enableBlur={false}
-        baseRotation={5}
-        blurStrength={10}
-        containerClassName="my-20"
-        textClassName="space-y-4"
-      >
-        <AuthSection />
-      </ScrollReveal> */}
-
-      {/* <CustomFooter /> */}
     </div>
   );
 };

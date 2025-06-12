@@ -26,7 +26,9 @@ export default function ComponentMemes() {
   useEffect(() => {
     const fetchTopMemes = async () => {
       try {
-        const response = await fetch("http://localhost:8080/memes/leaderboard");
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/memes/leaderboard`
+        );
         const data = await response.json();
 
         const sorted = data.topMemes

@@ -36,12 +36,16 @@ function Mint() {
         payload.append(key, formData[key]);
       }
 
-      await axios.post("http://localhost:8080/api/my-memes", payload, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/my-memes`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
 
       alert("🎉 Meme minted successfully!");
 
