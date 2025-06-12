@@ -1,0 +1,3 @@
+[submodule "frontend/react-burning-footer"]
+	path = frontend/react-burning-footer
+	url = https://github.com/defi-bear/react-burning-footer.git

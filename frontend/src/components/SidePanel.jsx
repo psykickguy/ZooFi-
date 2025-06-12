@@ -1,6 +1,6 @@
 import React from "react";
 import "./Components.css";
-import BurningFooter from "../../react-burning/index";
+import BurningFooter from "../../react-burning-footer/index";
 
 export default function SidePanel() {
   return (
