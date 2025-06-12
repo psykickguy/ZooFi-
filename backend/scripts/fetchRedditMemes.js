@@ -14,8 +14,10 @@ const User = require("../models/users.js"); // adjust path if needed
 const Leaderboard = require("../models/LeaderboardEntry.js"); // adjust if needed
 const { cloudinary } = require("../cloudConfig.js"); // cloudinary config
 
+const MONGO_URL = process.env.MONGODB_URI;
+
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/zoofi");
+mongoose.connect(MONGO_URL);
 
 const reddit = new snoowrap({
   userAgent: "zoofi-bot",
