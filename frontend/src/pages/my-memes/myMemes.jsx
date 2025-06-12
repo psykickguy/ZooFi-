@@ -15,7 +15,7 @@ function MyMemes() {
         const res = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/my-memes`,
           {
-            withCredentials: "include",
+            withCredentials: true,
           }
         );
         console.log("Fetched my memes:", res.data);
