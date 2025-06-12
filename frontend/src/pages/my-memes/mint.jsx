@@ -40,9 +40,9 @@ function Mint() {
         `${import.meta.env.VITE_BACKEND_URL}/api/my-memes`,
         payload,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
           withCredentials: true,
         }
       );
