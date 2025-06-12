@@ -9,7 +9,7 @@ import { TextureLoader } from "three";
 import Particles from "./Particles";
 import Parallax from "./Parallax";
 
-import CustomFooter from "./Footer.jsx";
+// import CustomFooter from "./Footer.jsx";
 
 import dogeImg from "../assets/dogecoin.png";
 

@@ -7,7 +7,7 @@ import HeroVideoDialog from "../../components/magicui/hero-video-dialog";
 import ScrollReveal from "./ScrollReveal";
 import FadeContent from "./FadeContent";
 import FuzzyText from "../../components/FuzzyText";
-import CustomFooter from "../../components/Footer";
+// import CustomFooter from "../../components/Footer";
 import ASCIIText from "./ASCIIText";
 import FallingText from "./FallingText";
 import PixelCard from "./PixelCard";

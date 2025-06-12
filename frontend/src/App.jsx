@@ -19,7 +19,7 @@ import walletConnect from "./pages/wallet/walletConnect.jsx";
 
 import Background from "./components/Background";
 import Navbar from "./components/Navbar.jsx";
-import CustomFooter from "./components/Footer.jsx";
+// import CustomFooter from "./components/Footer.jsx";
 // import SidePanel from "./components/SidePanel.jsx";
 import Particles from "./components/Particles.jsx";
 import { ThemeProvider } from "./components/theme-provider.jsx";
