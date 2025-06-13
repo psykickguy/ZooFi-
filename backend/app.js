@@ -7,6 +7,7 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
+const MongoStore = require("connect-mongo");
 const User = require("./models/users.js");
 
 // const ObjectId = mongoose.Types.ObjectId;
@@ -49,13 +50,16 @@ app.get("/", (req, res) => {
 
 app.use(
   session({
+    name: "zoofi.sid",
     secret: "zoofi-secret",
     resave: false,
-    saveUninitialized: false, // better security: don’t store empty sessions
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: MONGO_URL }), // ✅ store in DB
     cookie: {
       httpOnly: true,
-      secure: false, // true if using HTTPS
-      sameSite: "none", // or "none" if frontend and backend are on different origins
+      secure: true, // ✅ true for HTTPS (Render, Netlify)
+      sameSite: "none", // ✅ allows cross-origin
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
   })
 );
