@@ -30,7 +30,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/api/login", form);
+      await api.post("/api/login", form, { withCredentials: true });
       localStorage.setItem("isLoggedIn", "true");
       window.dispatchEvent(new Event("loginStatusChanged"));
       nav("/explore");
