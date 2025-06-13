@@ -67,6 +67,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  console.log("🔍 Incoming Request:");
+  console.log("👉 Method:", req.method);
+  console.log("👉 URL:", req.originalUrl);
+  console.log("👉 Cookies:", req.headers.cookie);
+  console.log("👉 Session:", req.session);
+  console.log("👉 User:", req.user);
+  next();
+});
+
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
